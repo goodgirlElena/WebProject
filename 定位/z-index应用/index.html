@@ -1,0 +1,50 @@
+<!doctype html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title>z-index的应用</title>
+		<style>
+			#sheet{
+				width: 445px;
+				margin: 0 auto;
+				border: solid 1px;
+			}
+			#picture{
+				position: relative;
+			}
+			.pic{
+				width: 441px;
+				height: 168px;
+				margin: 2px;
+				
+			}
+			#item1{
+				width: 441px;
+				height:25px;
+				margin: 0px 2px 0px 2px;
+				color: #fcfcfc;
+				background-color: rgba(65,71,102,0.4);
+				text-align: center;
+				line-height: 25px;
+				position: absolute;
+				top: 145px;
+				left: 0px;
+				right: 0 px;
+				z-index：2;
+			}
+		</style>
+	</head>
+	<body>
+		<div id="sheet">
+			<div id="picture">
+				<img class="pic"  src="img/timg.jpg"/>
+				<div id="item1">
+					<span>相约九月</span>
+				</div>
+			</div>
+			
+			<p>时间：11月6号星期六 8:30</p>
+			<p>地点：朝阳区西大望路珠江帝景K区正门前集合</p>
+		</div>
+	</body>
+</html>

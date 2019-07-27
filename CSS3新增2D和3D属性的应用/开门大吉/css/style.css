@@ -1,0 +1,51 @@
+#door {
+	width: 450px;
+	height: 300px;
+	border: 1px solid #000;
+	margin: 100px auto;
+	background: url(../img/pic.jpg) no-repeat;
+	background-size: 450px 300px;
+	position: relative;
+	perspective: 1000px; /*透视要给父级元素添加*/
+}
+.door-l,.door-r {
+	width: 50%;
+	height: 100%;
+	background: url(../img/door_01.gif) no-repeat;
+	background-size: 100% 100%;
+	position: absolute;
+	top: 0;
+	transition: all 1s; /*增加一个过渡属性当鼠标经过door盒子时,door-l/door-r在1s内完成开门动作*/
+}
+.door-l::before,.door-r::before {/*为两扇门增加门把手*/
+	content: "";
+	border: 2px solid gold;
+	width: 20px;
+	height: 20px;
+	border-radius: 50%;
+	position: absolute;
+	top: 50%;
+	transform: translateY(-50%);
+} 
+.door-l::before {
+	right: 5px; /*让门把手距离门的右边5px*/
+}
+.door-r::before {
+	left: 5px; /*让门把手距离门的左边5px*/
+}
+.door-l {
+	left: 0;
+	border-right: 1px solid #000;
+	transform-origin: left;  /*让门沿门的左边旋转*/
+}
+#door:hover .door-l {
+	transform: rotateY(-130deg);  /*让门沿门的左边旋转130°*/
+}
+.door-r {
+	right: 0;
+	border-left: 1px solid #000;
+	transform-origin: right;  /*让门沿门的右边边旋转*/
+}
+#door:hover .door-r {
+	transform: rotateY(130deg); /*让门沿门的右边边旋转130°*/
+}

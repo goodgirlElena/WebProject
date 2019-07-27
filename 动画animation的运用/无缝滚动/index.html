@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+		<style type="text/css">
+			*{
+				margin: 0;
+				padding: 0;
+			}
+			div {
+				width: 468px;
+				height: 101px;
+				border: 1px solid pink;
+				margin: 100px auto;
+				overflow: hidden;
+				/*position: relative;*/
+			}
+			ul {
+				list-style: none;
+			}
+			div ul {
+				/*position: absolute;
+				top: 0;
+				left: 0;*/
+				width: 200%;
+				/*给ul添加动画效果*/
+				animation: moving 5s linear infinite; /*linear是匀速运动*/
+			}
+			div ul li {
+				float: left;
+			}
+			@keyframes moving{
+				from{
+					transform: translate(0,0); /*transform是CSS3新增的转换属性   translate是移动属性*/
+				}
+				to{
+					transform: translate(-468px,0);
+				}
+			}
+		</style>
+	</head>
+	<body>
+		<div>
+			<ul>
+				<li><img src="img/1.jpg"/></li>
+				<li><img src="img/2.jpg"/></li>
+				<li><img src="img/3.jpg"/></li>
+				<li><img src="img/4.jpg"/></li>
+				<li><img src="img/5.jpg"/></li>
+				<li><img src="img/6.jpg"/></li>
+				<li><img src="img/1.jpg"/></li>
+				<li><img src="img/2.jpg"/></li>
+				<li><img src="img/3.jpg"/></li>
+				<li><img src="img/4.jpg"/></li>
+				<li><img src="img/5.jpg"/></li>
+				<li><img src="img/6.jpg"/></li>
+			</ul>
+		</div>
+	</body>
+</html>
