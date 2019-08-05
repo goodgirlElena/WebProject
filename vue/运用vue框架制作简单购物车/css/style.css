@@ -1,0 +1,28 @@
+* {
+	margin: 0;
+	padding: 0;
+}
+div {
+	margin: 100px auto;
+	width: 600px;
+	position: relative;
+}
+span {
+	position: absolute;
+	bottom: -20px;
+	left: 0;
+}
+table {
+    border: 1px solid black;
+}
+table {
+    width: 600px;
+}
+
+th {
+    height: 50px;
+}
+th, td {
+	text-align: center;
+    border-bottom: 1px solid #ddd;
+}

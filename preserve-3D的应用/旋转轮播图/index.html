@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+		<style type="text/css">
+			* {
+				margin: 0;
+				padding: 0;
+			}
+			body {
+				perspective: 1000px;
+			}
+			section {
+				width: 224px;
+				height: 168px;
+				background: url(img/1.jpg) no-repeat;
+				margin: 200px auto;
+				position: relative;
+				/*transition: 5s linear;*/
+				transform-style: preserve-3d; /*使被转换的子元素保留区3D转换,即有3D效果*/
+			}
+			section:hover {
+				animation: rotat 5s linear infinite;
+			}
+			@keyframes rotat {
+				from{
+					transform: rotateY(0deg);
+				}
+				to{
+					transform: rotateY(360deg);
+				}
+			}
+			section div {
+				width: 224px;
+				height: 168px;
+				position: absolute;
+				top: 0;
+				left: 0;
+			}
+			section div:nth-child(1) {
+				background: url(img/2.jpg) no-repeat;
+				transform: rotateY(0deg) translateZ(400px);
+			}
+			section div:nth-child(2) {
+				background: url(img/3.jpg) no-repeat;
+				transform: rotateY(60deg) translateZ(400px);
+			}
+			section div:nth-child(3) {
+				background: url(img/4.jpg) no-repeat;
+				transform: rotateY(120deg) translateZ(400px);
+			}
+			section div:nth-child(4) {
+				background: url(img/5.jpg) no-repeat;
+				transform: rotateY(180deg) translateZ(400px);
+			}
+			section div:nth-child(5) {
+				background: url(img/6.jpg) no-repeat;
+				transform: rotateY(240deg) translateZ(400px);
+			}
+			section div:nth-child(6) {
+				background: url(img/7.jpg) no-repeat;
+				transform: rotateY(300deg) translateZ(400px);
+			}
+		</style>
+	</head>
+	<body>
+		<section>
+			<div></div>
+			<div></div>
+			<div></div>
+			<div></div>
+			<div></div>
+			<div></div>
+		</section>
+	</body>
+</html>
