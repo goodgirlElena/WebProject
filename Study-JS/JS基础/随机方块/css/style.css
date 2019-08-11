@@ -1,0 +1,10 @@
+* {
+	margin: 0;
+	padding: 0;
+}
+#container {
+	width: 600px;
+	height: 400px;
+	background-color: grey;
+	position: relative;
+}

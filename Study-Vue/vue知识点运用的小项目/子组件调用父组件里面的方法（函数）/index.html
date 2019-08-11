@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+		
+	</head>
+	<body>
+		<div id="app">
+			<!--	
+				:datafromparent="msg"是将父组件里面的数据传递给子组件使用，
+				@func="show 是将父组件里的函数传递给子组件使用
+			-->
+			<com1 :datafromparent="msg" @func="show"></com1>
+		</div>
+		<!--这是一个子组件的模板对象-->
+		<template id="temp1">
+			<div>
+				<h2>这是一个子组件</h2>
+				<button @click="myClick">调用</button> <!--@click="myClick" 就是将父组件的函数传递给了子组件，之后子组件就可以调用父组件的函数了-->
+				<p>{{datafromparent}}</p>
+			</div>
+			
+		</template>
+		
+		<script src="js/vue.js"></script>
+		<script>
+			//定义一个局部子组件的方法二：
+			//定义了一个字面量类型的组件模板对象
+//			var com1 = {
+//				template: '#temp1',//指定了一个id为temp1的template标签，使子组件的模板对象可以在外部进行定义
+//				data() {
+//					return {
+//						sonMsg: {name: "sad", age: 6}
+//					}
+//				},
+//				methods: {
+//					myClick(){
+////						this.$emit('func',123)//子组件使用$emit 触发/调用 父组件的自定义事件
+//						this.$emit('func',this.sonMsg)//子组件将自己的data里面的 数据传递给父组件使用
+//					}
+//				}
+//			}
+			var vm = new Vue({
+				el: '#app',
+				data: {
+					dataFromSon: null,
+					msg: '我是父组件里面的data数据！'
+				},
+				methods: {
+					show(data){//括号里面的data是从子组件中传过来的
+//						console.log("调用了父组件的show()方法:" + data);
+						console.log(data);//将子组件传过来的数据打印出来
+						this.dataFromSon = data; //将从子组件传来的数据存放在自己的data中
+					}
+				},
+				//定义一个局部子组件的方法二：
+				//语法格式：
+				//		components:{
+				//				com1
+				//			}
+				//定义一个局部子组件的方法一：
+				//语法格式：
+				//		components: {
+				//				'组件名':{组件对象}
+				//			}
+				components: {
+//					com1 //相当于'com1'(组件名称):com1（组件对象）
+					com1: { 
+						props: ['datafromparent'],
+						template: '#temp1',//指定了一个id为temp1的template标签，使子组件的模板对象可以在外部进行定义
+						data(){
+							return {
+								sonMsg: {name: "sad", age: 6}
+							}
+						},
+						methods: {
+							myClick(){
+		//						this.$emit('func',123)//子组件使用$emit 触发/调用 父组件的自定义事件
+								this.$emit('func',this.sonMsg);//子组件将自己的data里面的 数据传递给父组件使用
+							}
+						}}
+					}
+			})
+		</script>
+	</body>
+</html>

@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+		<style>
+			.router-link-active,.myClass {
+				color: red;
+				font-weight: bold;
+				font-size: 30px;
+				font-style: italic;
+				text-decoration: none;
+			}
+			.v-enter,
+			.v-leave-to {
+				opacity: 0;
+				transform: translateX(40px);
+			}
+			
+			.v-enter-active,
+			.v-leave-active {
+				transition: all .5s ease;
+			}
+		</style>
+	</head>
+	<body>
+		<div id="app">
+			<!--这是vue-router提供的元素，专门用来当做占位符的，将来路由规则匹配到的组件，
+			就会展示到这个router-view里面去-->
+			<!--<a href="#/login">登录</a>
+			<a href="#/register">注册</a>-->
+			<!-- router-link默认渲染为a标签 -->
+		<!--路由规则传递参数方式一-----利用query
+			<router-link to="/login?id=10&name=Elena">登录</router-link>
+			<router-link to="/register">注册</router-link> 
+		 -->
+		<!--路由规则传递参数方式二-----利用params-->
+			<router-link to="/login/10/Elena">登录</router-link> 
+			<router-link to="/register">注册</router-link> 
+			<transition mode="out-in">
+				<router-view></router-view>
+			</transition>
+		</div>
+		<script src="js/vue.js"></script>
+		<script src="https://unpkg.com/vue-router/dist/vue-router.js "></script>
+		<script>
+			
+			var login = {
+				//路由规则传递参数方式一-----利用query
+				//利用vue实例下面的route属性下面的query属性可以拿到id和name的值
+//				template: '<h1>登錄組件---{{$route.query.id}}---{{$route.query.name}}</h1>'
+				//路由规则传递参数方式二-----利用params
+				template: '<h1>登錄組件---{{$route.params.id}}----{{$route.params.name}}</h1>',
+//				created(){
+//					console.log(this.$route)
+//				}
+			}
+			var register = {
+				template: '<h1>注册組件</h1>'
+				
+			}
+			var routerObj = new VueRouter({
+				routes: [//路由匹配規則
+					//注意： component的属性必须是一个组件模板对象，不能是组件的引用名称
+					{path: '/', redirect: '/login'},
+					//路由规则传递参数方式一-----利用query
+					//{path: '/login', component: login},
+					//{path: '/register', component: register}
+					//路由规则传递参数方式二-----利用params
+					{path: '/login/:id/:name', component: login},
+					{path: '/register', component: register},
+				],
+				linkActiveClass: 'myClass' //自定义链接激活类名
+			});
+			
+			var vm = new Vue({
+				el: '#app',
+				data: {},
+				methods: {},
+				router: routerObj
+			});
+		</script>
+	</body>
+</html>

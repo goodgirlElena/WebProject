@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+		<style>
+			.ball {
+				width: 15px;
+				height: 15px;
+				border-radius: 50%;
+				background-color: red;
+			}
+			[v-cloak] {
+				display: none;
+			}
+		</style>
+	</head>
+	<body>
+		<div id="app">
+			<button @click="flag=!flag">购买</button>
+			<!--使用transition把小球包裹起来-->
+			<transition
+				@before-enter="beforeEnter"
+				@enter="enter"
+				@after-enter="afterEnter">
+				
+				<div v-cloak class="ball" v-show="flag"></div>
+			</transition>
+		</div>
+		<script src="js/vue.js"></script>
+		<script>
+			var vm = new Vue({
+				el: '#app',
+				data: {
+					flag: false
+				},
+				methods: {
+					//注意：动画钩子函数的第一参数 el 表示要执行动画的那个DOM元素 是个原生的JS DOM对象
+					//el 相当于通过document.getElementsById("")方式获取到的原生JS DOM对象
+					beforeEnter(el){
+						//表示动画入场之前，此时动画尚未开始，可以在beforenter中，设置
+						//元素开始动画之前的起始样式
+						//设置小球开始动画之前的起始位置
+						el.style.transform = "translate(0,0)";
+					},
+					enter(el,done){
+						el.offsetHeight//仅为实现过渡而写 没有实际意义
+						//表示进入动画后的样式 ，这里 可以设置小球完成动画之后的结束状态
+						el.style.transform = "translate(150px,450px)";
+						el.style.transition = "all 1s ease";
+						done();//此处相当于调用动画完成之后需要执行的函数即afterEnter()函数
+					},
+					afterEnter(el){
+						//动画完成之后所执行的函数
+						this.flag = !this.flag;
+					}
+				}
+			})
+		</script>
+	</body>
+</html>

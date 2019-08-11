@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+	</head>
+	<body>
+		<div id="app">
+			<input type="button" value="获取元素" @click="getElement" />
+			<h3 id="myh3" ref="myh3">范德萨发股份</h3> <!--使用ref来获取标签节点-->
+			<hr />
+			<login ref="myLogin"></login>  <!--使用ref来获取组件，便于以后操作它-->
+		</div>
+		
+		
+		<script src="js/vue.js"></script>
+		<script>
+			var login = {
+				template: '<h1>登录组件</h1>',
+				data(){
+					return {
+						msg: '哈哈，加油哦！！'
+					}
+				},
+				methods: {
+					show(){
+						console.log("调用了子组件的方法")
+					}
+				}
+			}
+			
+			var vm = new Vue({
+				el: '#app',
+				data: {},
+				methods: {
+					getElement(){
+						console.log(this.$refs.myh3.innerText);//该语句相当于 ==> console.log(document.getElementById("myh3"));
+						console.log(this.$refs.myLogin.msg);//拿到子组件里面的data数据，并将它打印出来
+						this.$refs.myLogin.show();//调用子组件的show方法
+					}
+				},
+				components: {
+					login
+				}
+			});
+		</script>
+	</body>
+</html>

@@ -1,0 +1,190 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <style>
+        *{
+            margin: 0px;
+            padding: 0px;
+        }
+    </style>
+    <script>
+        //地图
+        var b;//定时器
+        var dir="right";//方向
+        var len = 20;//大小
+        // var oDiv = document.getElementById('div');
+        var food = true;//判断有无值   
+        var left;//蛇左右芳香
+        var shu//蛇上下方向
+        var jbq = 0;//计步器
+        function Map(){
+          this.width = 800;
+          this.height = 400;
+          this.color= '#ddd';
+          this.position = 'absolute';
+          this.show = function(){
+          var div = document.createElement('div');
+          div.style.cssText = "height:" + this.height + 'px;width:' + this.width + 'px;background-color:' + this.color + ';position:' + this.position + ';zIndex:999';
+          //console.log(div.style.cssText);
+          document.getElementsByTagName('body')[0].appendChild(div);
+      }
+    }
+
+    
+   
+          
+       //蛇体
+        var snaker = [[0,1,'green',null],[1,1,'green',null],[2,1,'green',null],[3,1,'red',null]];//第一个值是横向起始位置第二个是总想起始位置第三个为颜色
+        function snake(){
+            for(i=0;i<snaker.length;i++){
+                if(snaker[i][3]==null){
+                    snaker[i][3] = document.createElement('div');
+                    snaker[i][3].style.cssText = "width:" + len + 'px;height:' + len + 'px;background-Color:' + snaker[i][2] + ';position:absolute;';
+                    document.body.appendChild(snaker[i][3]);
+                }
+                snaker[i][3].style.left = snaker[i][0]*len+'px';
+                snaker[i][3].style.top = snaker[i][1]*len+'px';
+                //console.log(snaker[i][0]*len+'px',snaker[i][1]*len+'px');
+            }
+            
+        }
+              //食物
+            function sw(){
+            if(food == 1){
+                food = document.createElement('div');
+                food.style.cssText = "height:" + len + 'px;width:' + len + 'px;background-color:#f00;position:absolute;zIndex:999';
+                //console.log(food.style.cssText);
+                document.body.appendChild(food);
+            }
+            //随机生成食物
+            left = Math.round(Math.random()*39);
+            shu = Math.round(Math.random()*19);
+            // alert(shu);
+            //必须为否则不是len的倍数会吃不到食物
+            food.style.left = left*len+'px';
+            food.style.top = shu*len+'px';
+        }
+        //移动
+        function move(){
+           
+            for(i=0;i<snaker.length-1;i++){
+                //当前的位置等于上一个一维数组的位置
+                snaker[i][0] = snaker[i+1][0];
+                snaker[i][1] = snaker[i+1][1];
+            }
+            if(dir == 'right'){
+                snaker[snaker.length-1][0]+=1;
+            }
+            if(dir == 'left'){
+                snaker[snaker.length-1][0]-=1;
+            }
+            if(dir == 'top'){
+                snaker[snaker.length-1][1]-=1;
+            }
+            if(dir == 'down'){
+                snaker[snaker.length-1][1]+=1;
+            }
+            //判断
+            var x = snaker[snaker.length-1][0];
+            var y = snaker[snaker.length-1][1];
+            if(x>39 || x<0 || y>19 || y<0){
+                alert('game over');
+                // snaker = [[0,1,'green',null],[1,1,'green',null],[2,1,'green',null],[3,1,'red',null]];
+                // leng = snaker.length;
+                clearInterval(b);
+                location.reload();
+                return false;
+            }
+            if(x == left&&y == shu){
+                jbq++;
+                //吃到后在数组后添加一个
+                var news = [snaker[0][0],snaker[0][1],'green',null];
+                snaker.unshift(news);
+                var a = document.getElementById('aaa').innerHTML='得分'+jbq;
+                // console.log(i);
+                //重新生成食物
+              sw();
+            }
+            //自动寻路
+            function xl(){
+                    if(x==left&&y>shu){
+						dir = "top"
+					}
+					if(x==left&&y<shu){
+						dir = "down"
+					}
+					if(y==shu&&x>left){
+						dir = "left"
+					}
+					if(y==shu&&x<left){
+						dir = "right"
+					}
+					if(y>shu){
+						dir = "top"
+					}
+					if(y<shu){
+						dir = "down"
+					}
+					if(x>left){
+						dir = "left"
+					}
+					if(x<left){
+						dir = "right"
+                    }
+            }
+            snake();
+            
+        }
+            
+        window.onload=function(){
+             //生成地图
+            var map = new Map();
+            map.show();
+            // snake();
+            sw();
+            // clearInterval(b);
+            //控制
+
+            b = setInterval(function(){
+                move();
+            },200+jbq);
+            document.onkeydown=function(key){
+                    key = event.keyCode;
+                        if(key==68||key==39){//右
+                           dir = 'right';
+                        }
+                        if(key==65||key==37){//左
+                            dir = 'left';
+                        }
+                        if(key==83||key==40){//下
+                            dir = 'down';
+                        }
+                        if(key==87||key==38){//上
+                            dir = 'top';
+                        }
+                       
+                }
+               
+        }
+           /*  思路：
+                1.先写出地图
+                2.用二维数组写出蛇然后给蛇添加x.y轴颜色和div(null)
+                3.用for循环给每一个二维数组的数据都添加上
+                4.计算蛇尾的位置，蛇尾的每次位置是上一个的位置
+                5.制作食物
+                6.判断食物是否有值创建一个div给div添加属性作为食物
+                7.用随机数给食物更换位置
+                8.写蛇头的移动
+                9.判断键盘动作添加相应的位置
+                10.判断蛇头是否触碰墙
+                11.判断蛇头是否碰撞到食物 */
+    </script>
+</head>
+<body>
+    <div id="aaa"style='position: absolute;top:400px;'>得分0</div>
+</body>
+</html>

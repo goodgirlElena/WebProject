@@ -1,0 +1,211 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8" />
+		<script src="https://apps.bdimg.com/libs/jquery/2.1.4/jquery.min.js"></script>
+		<script type="text/javascript">
+			var plane = "<div id='plane' style='position: absolute;width: 60px;height:36px;background: url(img/plane.png);z-index:100000;left: 230px;top: 555px;'></div>"; 
+			//var dt = "<div id='dt'style='width: 512px;height: 753px;position: absolute;background-color: #cccccc;'></div>";
+			var plane1,dt1,sum;
+            sum = 0;
+			//判断是否超过边界
+			var posion = (left,top,maxLeft,maxTop,minLeft = 0,minTop = 0) => {
+				if(left <minLeft) left = minLeft
+				else if (left > maxLeft) left = maxLeft
+				if(top < minTop) top = minTop
+				else if(top > maxTop) top = maxTop
+				return{
+					left,top
+				}
+			}
+			$(document).ready(function(){
+				//背景
+				var bjTime = setInterval(() =>{
+					$(".map1").css("top",$(".map1").offset().top + 1);
+					$(".map2").css("top",$(".map2").offset().top + 1);
+					if($(".map1").offset().top >= 753){
+						$(".map1").css("top",-753);
+					}else {
+						if($(".map2").offset().top >= 753){
+							$(".map2").css('top',-753);
+						}
+					}
+				},10)
+				//创建地图
+				//$("#map").append(dt);
+				//创建飞机
+				$("#map").append(plane);
+				plane1 = $("#plane");
+				dt1 = $("#map");
+			});
+			//键盘事件
+			$(window).keydown(function(e){
+				key = e.keyCode;
+				var t = $("#plane").position().top;
+				var l = $("#plane").position().left;
+	                if(key==68||key==39){//右
+	                  l+=10;
+	                }
+	                if(key==65||key==37){//左
+	                  l-=10;
+	                }
+	                if(key==83||key==40){//下
+	                   t+=10;
+	                }
+	                if(key==87||key==38){//上
+	                   t-=10;
+	                }
+	                if(key == 32){//发射子弹
+	                	shoot();
+	                }
+	                //获取最大宽高
+	                var maxLeft = dt1.innerWidth() - plane1.innerWidth();
+	                var maxTop = dt1.innerHeight() - plane1.innerHeight();
+	                var position1 =  posion(l,t,maxLeft,maxTop);
+	                plane1.css("left",position1.left).css("top",position1.top);
+			});
+			//子弹
+			var endTime = new Date();
+			var shoot = () => {
+				//控制发射速度
+				if(new Date() - endTime <300){
+					return false;
+				}
+				var bLeft = plane1.position().left + 27;
+				var bTop = plane1.position().top - 20;
+				//子弹发射位置
+				var bullet = $('<div/>').addClass('bullet').css("left",bLeft).css("top",bTop);
+				$("#map").append(bullet);
+				endTime = new Date();
+				var tBullet = setInterval(() => {
+					bullet.css("top",bullet.position().top - 5)
+					if(bullet.position().top < 0){//检测子弹飞出屏幕删除
+						bullet.remove();
+					}
+				},10)
+                //子弹碰撞
+                setInterval(function(){
+					$(".enemy").each(function(i,enemy){
+						$(".bullet").each(function(i,bullet){
+							//console.log(enemy,bullet);
+							if(checkCollision(enemy,bullet) || checkCollision(bullet,enemy)){
+								enemy.remove();
+								bullet.remove();
+                                sum++;
+                                $('.df').html('得分为'+sum);
+							}
+						})
+					})
+				},1)
+            }
+            
+			//生成敌方战机
+			var tenemy = setInterval(() => {
+				var enemy = $('<div/>').addClass('enemy').css("top",0);
+				$("#map").append(enemy);
+				var eLeft = Math.round(Math.random() * (dt1.innerWidth() - $(".enemy").innerWidth()));
+				enemy.css("left",eLeft);
+				//飞机下落
+				var tEnemy = setInterval(() => {
+					enemy.css("top",enemy.position().top + 5)
+					if(enemy.position().top > dt1.innerHeight()){//检测子弹飞出屏幕删除 - $(".enemy").innerHeight()
+						enemy.remove();
+					}
+				},500)
+				//检测碰撞
+				setTimeout(function(){
+					var myplane = plane1.get(0);
+					$(".enemy").each(function(i,item){
+						if(checkCollision(myplane,item) || checkCollision(item,myplane)){
+							alert('game over!');
+							clearInterval(tenemy);
+							location.reload();
+						}
+					})
+					//console.log($('.enemy').get(0),"\n",$("#plane").get(0));
+					
+					//console.log(checkCollision($("#plane").get(0),$(".enemy").get(0)));
+				},1)
+			},1000)
+			
+			//死亡检测
+			var getDom = (dom) => {
+				var result = {};
+				result.left = dom.offsetLeft;
+				result.width = dom.offsetLeft + dom.offsetWidth;
+				result.top = dom.offsetTop;
+				result.height = dom.offsetTop + dom.offsetHeight;
+				return result;
+			}
+			
+			
+			var checkCollision = (a,b) => {
+				a = getDom(a);
+				b = getDom(b);
+				if(!(a.left > b.width || a.width < b.left || a.top > b.height || a.height < b.top)){
+                	return true;
+	            }else{
+	                return false;
+	            }
+            }
+			
+            
+			
+		</script>
+		<style type="text/css">
+			*{
+				margin: 0;
+    			padding:0;
+			}
+			#map{
+			    margin: 0 auto;
+			    overflow: hidden;
+			    position: relative;
+			    width: 521px;
+			    height:753px;
+				overflow: hidden;
+			}
+			.bullet{
+				background:url(img/bullet.png);
+				position:absolute;
+				width:6px;
+				height:22px
+			}
+			.enemy{
+				background:url(img/enemy.png);
+				position:absolute;
+				width:23px;
+				height:30px;
+			}
+            .df{
+                position: absolute;
+                top: 0;
+                left: 0;;
+                z-index: 9999;
+            }
+			#map0{
+				width: 521px;
+				height: 753px;
+				position: absolute;
+				background: url("http://image.mamicode.com/info/201708/20180111002123394330.gif") no-repeat;
+				background-size: cover;
+				/* z-index: 10000000; */
+			}
+			.map1{
+				top: 0;
+			}
+			.map2{
+				top: -753px
+			}
+		</style>
+		<title></title>
+	</head>
+	<body>
+		<div id="map">
+            <div class="map1" id="map0"></div>
+            <div class="map2" id="map0"></div>
+            <div class="df">得分为:0</div>
+        </div>
+        
+	</body>
+</html>

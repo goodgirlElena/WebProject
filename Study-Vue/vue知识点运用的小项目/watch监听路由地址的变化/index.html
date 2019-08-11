@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+		<style>
+			.router-link-active,.myClass {
+				color: red;
+				font-weight: bold;
+				font-size: 30px;
+				font-style: italic;
+				text-decoration: none;
+			}
+			.v-enter,
+			.v-leave-to {
+				opacity: 0;
+				transform: translateX(40px);
+			}
+			
+			.v-enter-active,
+			.v-leave-active {
+				transition: all .5s ease;
+			}
+		</style>
+	</head>
+	<body>
+		<div id="app">
+			<router-link to="/login">登录</router-link> 
+			<router-link to="/register">注册</router-link> 
+			<transition mode="out-in">
+				<router-view></router-view>
+			</transition>
+		</div>
+		<script src="js/vue.js"></script>
+		<script src="https://unpkg.com/vue-router/dist/vue-router.js "></script>
+		<script>
+			
+			var login = {
+				template: '<h1>登錄組件</h1>'
+			}
+			var register = {
+				template: '<h1>注册組件</h1>'
+				
+			}
+			var routerObj = new VueRouter({
+				routes: [//路由匹配規則
+					//注意： component的属性必须是一个组件模板对象，不能是组件的引用名称
+					{path: '/', redirect: '/login'},
+					{path: '/login', component: login},
+					{path: '/register', component: register}
+				],
+				linkActiveClass: 'myClass' //自定义链接激活类名
+			});
+			
+			var vm = new Vue({
+				el: '#app',
+				data: {},
+				methods: {},
+				router: routerObj,
+				watch: {
+					'$route.path': function(newVal,oldVal){
+						if(newVal === "/login")
+						{
+							alert("欢迎进入登录页面！")
+						}
+						else
+						{
+							alert("欢迎进入注册页面！")
+						}
+					}
+				}
+			});
+		</script>
+	</body>
+</html>

@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+	</head>
+	<body>
+		<div id="app">
+		<!--方法一：用keyup事件监听data数据中的改变
+			<input type="text" v-model="firstname" @keyup="getFullName" />+
+			<input type="text" v-model="lastname" @keyup="getFullName" />=
+			<input type="text" v-model="fullname" /
+		-->
+			<!--用vue 中的 watch属性监听data数据中的改变-->
+			<input type="text" v-model="firstname" />+
+			<input type="text" v-model="lastname" />=
+			<input type="text" v-model="fullname" />
+		</div>
+		<script src="js/vue.js"></script>
+		<script src="https://unpkg.com/vue-router/dist/vue-router.js "></script>
+		<script>
+			var vm = new Vue({
+				el: '#app',
+				data: {
+					firstname: '',
+					lastname: '',
+					fullname: ''
+				},
+				methods: {
+					//方法一：用keyup事件监听data数据中的改变
+					//getFullName(){
+					//	this.fullname = this.firstname + '-' + this.lastname;
+					//}
+					
+				},
+				watch: {
+					firstname: function(newVal,oldVal){
+						this.fullname = newVal + '-' + this.lastname;
+					},
+					lastname: function(newVal,oldVal){
+						this.fullname = this.firstname+ '-' + newVal;
+					}
+				}
+			})
+		</script>
+	</body>
+</html>

@@ -1,0 +1,69 @@
+*{
+	margin: 0;
+	padding: 0;
+}
+
+#mainScreen{
+	width: 320px;
+	height: 480px;
+	margin: 0 auto;
+	position: relative;
+	overflow: hidden;
+}
+
+.bg{
+	width: 320px;
+	height: 480px;
+	position: absolute;
+	background-image: url(../img/bg.jpg);
+}
+#bg2{
+	top: -480px;
+}
+/* 飞机 */
+#airplane{
+	width: 106px;
+	height: 100px;
+	background-image: url(../img/plane.png);
+	position: absolute;
+	left: 107px;
+	top: 380px;
+}
+.bullet{
+	position: absolute;
+	width: 5px;
+	height: 10px;
+	background-image: url(../img/bullet.png);
+	background-size: 5px 10px;
+}
+.tank{
+	position: absolute;
+	width: 40px;
+	height: 40px;
+	background-image: url(../img/plane2.png);
+	background-size: 40px 40px;
+}
+#Grade{
+	position: absolute;
+	top: 0;
+	left: 0;
+	background-color: black;
+	color: white;
+}
+#butt{
+	width: 60px;
+	height: 30px;
+	background-color: red;
+	position: absolute;
+	left: 130px;
+	top: 225px;
+}
+#butt1{
+	width: 60px;
+	height: 30px;
+	background-color: red;
+	position: absolute;
+	left: 130px;
+	top: 260px;
+}
+

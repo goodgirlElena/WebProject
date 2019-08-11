@@ -1,0 +1,157 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <script src="https://apps.bdimg.com/libs/jquery/2.1.4/jquery.min.js"></script>
+    <script>
+        var plane = "<div id='plane' style='position: absolute;width: 60px;height:36px;background: url(img/plane.png);left: 365px;top: 555px;'></div>";
+        var map,plane1,START;
+        START = false;
+        //飞机越界判断
+        var position = (left,top,maxLeft,maxTop,minLeft = 0,minTop = 0) => {
+            if(left > maxLeft){
+                left = maxLeft;
+            }else if(left < minLeft){
+                left = minLeft;
+            }
+            if(top > maxTop){
+                top = maxTop;
+            }else if(top < minTop){
+                top = minTop;
+            }
+            return{
+                left,top
+            }
+        }
+        $(document).ready(function(){
+            $(".start").click(function(){
+                START = true;
+                this.style.display = 'none';
+                $('.df').css('display','block');
+                map = $('#map');
+                //创建飞机
+                map.append(plane);
+                plane1 = $('#plane');
+                //创建小蜜蜂
+                bee();
+            });
+        });
+        //键盘事件
+        $(window).keydown(function(e){
+            key = e.keyCode;
+            var t = plane1.position().top;
+            var l = plane1.position().left;
+            if(key==68||key==39){//右
+                l+=10;
+            }
+            if(key==65||key==37){//左
+                l-=10;
+            }
+            if(key==83||key==40){//下
+                //t+=10;
+            }
+            if(key==87||key==38){//上
+                //t-=10;
+            }
+            if(key == 32){//发射子弹
+                shoot();
+            }
+            var maxLeft = map.innerWidth() - plane1.innerWidth();
+            var maxTop = map.innerHeight() - plane1.innerHeight();
+            var position1 = position(l,t,maxLeft,maxTop);
+            plane1.css('left',position1.left).css('top',position1.top);
+        });
+        //创建子弹
+        var endTime = new Date();
+        var shoot = () => {
+            //控制发射速度
+            if(new Date() - endTime < 300){
+                return false;
+            }
+            bLeft = plane1.position().left + 27;
+            bTop = plane1.position().top -20;
+            var bullet = $('<div/>').addClass('bullet').css('top',bTop).css('left',bLeft);
+            map.append(bullet);
+            endTime = new Date();
+            if(START){
+                var tBullet = setInterval(() => {
+                    var top = bullet.position().top;
+                    bullet.css("top",top-=5);
+                    if(top <= -10){
+                        bullet.remove();
+                    }
+                },10);
+            }
+        }
+        //创建敌机
+        var bee = () => {
+            for(i=1;i<5;i++){
+                for(j=0;j<10;j++){
+                    var beediv = $('<div/>').addClass('beediv');
+                    $('#bee').append(beediv);
+                    var offsetpx = 0 * i ;//负数向左倾斜正数向右
+                    beediv.css('left',0+50*j+offsetpx);//设置左边的值
+                    beediv.css('top',30*(i-1));//分行
+					beediv.css('width',40).css('height',28).css('position','absolute').css('background','url(img/bee0.png) no-repeat').css('float','left');
+                }
+            }
+        }
+    </script>
+    <style>
+        *{
+            margin: 0;
+            padding: 0;
+        }
+        #map{
+            width:800px; 
+            height:600px; 
+            overflow:hidden; 
+            background:black; 
+            margin:20px auto;
+            position:relative;
+        }
+        .df{
+            color: #ffffff;
+            position: absolute;
+            top: 0;
+            left: 0;
+            display: none;
+        }
+        .start{
+            color:white; 
+            font-size:20px; 
+            cursor:pointer; 
+            border:1px #FFFFFF solid; 
+            width:100px; height:30px; 
+            line-height:30px; 
+            text-align:center; 
+            position:absolute; 
+            top:285px; 
+            left:350px;
+        }
+        #bee{
+				width: 410px;
+				height: 120px;
+				position: relative;
+				left: 230px;
+				
+		}
+        .bullet{
+				background:url(img/bullet.png);
+				position:absolute;
+				width:6px;
+				height:22px
+		}
+    </style>
+</head>
+<body>
+    <div id="map">
+        <div class="df">得分为0分</div>
+        <div class="start">开始游戏</div>
+        <div id="bee"></div>
+    </div>
+</body>
+</html>

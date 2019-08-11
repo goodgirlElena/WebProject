@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+		<style>
+			* {
+				margin: 0;
+				padding: 0;
+			}
+			.header {
+				height: 80px;
+				border: 1px solid black;
+			}
+			#container {
+				height: 600px;
+				display: flex;
+			}
+			.left {
+				flex: 2;
+				border: 1px solid black;
+			}
+			.main {
+				flex: 8;
+				border: 1px solid black;
+			}
+		</style>
+	</head>
+	<body>
+		<div id="app">
+			<router-view></router-view>
+			<div id="container">
+				<router-view name="left"></router-view>
+				<router-view name="main"></router-view>
+			</div>
+			
+		</div>
+		
+		<script src="js/vue.js"></script>
+		<script src="https://unpkg.com/vue-router/dist/vue-router.js "></script>
+		<script>
+			var headBar = {
+				template: '<h2 class="header">这是头部区域</h2>'
+			}
+			var leftbox = {
+				template: '<h2 class="left">这是侧边栏区域</h2>'
+			}
+			var mainBox = {
+				template: '<h2 class="main">这是主题内容区域</h2>'
+			}
+			var router = new VueRouter({
+				routes: [
+					{path: '/', components: {
+						'default': headBar,
+						'left': leftbox,
+						'main': mainBox
+					}}
+				]
+			})
+			var vm = new Vue({
+				el: '#app',
+				data: {},
+				methods: {},
+				router
+			})
+		</script>
+	</body>
+</html>

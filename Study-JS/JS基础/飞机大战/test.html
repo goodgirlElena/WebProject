@@ -1,0 +1,173 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="https://apps.bdimg.com/libs/jquery/2.1.4/jquery.min.js"></script>
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <link rel="stylesheet" href="css/style.css">
+    <title>Document</title>
+</head>
+<body>
+    <div id="map">
+        <div id="map1" class="map"></div>
+        <div id="plane"></div>
+    </div>
+    <span class="jf">得分0</span>
+</body>
+</html>
+<script>
+    // 飞机操控
+    var plane = $("#plane");
+    var map = $("#map");
+    var jfq = 0;
+    //innerHTML
+    //当按下鼠标时
+    plane.onmousedown = function(e){
+    var ev = e || window.event;
+    basex = ev.pageX;
+    basey = ev.pageY;
+    movex = 0;
+    movey = 0;
+    //给地图添加鼠标移动事件
+    map.onmousemove = function(e){
+        var evt = e || window.event;
+        movex = evt.pageX - basex;
+        basex = evt.pageX;
+        movey = evt.pageY - basey;
+        basey = evt.pageY;
+        
+        //console.log(plane.style.top,plane.style.left);
+        // if(movex <= 60 ){//据左边
+        //     movex = 60;
+        // }else if(movex >= 461){
+        //     movex = 461;
+        // }
+        // if(movey > 768){
+        //     movey = 768;
+        // }
+        //console.log(movex,movey);
+        plane.style.left = plane.offsetLeft + movex + 'PX';
+        plane.style.top = plane.offsetTop + movey + 'PX';
+        //制作子弹
+        var Bullet = setTimeout(function(){
+            var bullets = document.createElement('div');
+            map.appendChild(bullets);
+            bullets.className = 'bullet';
+            bullets.style.cssText = "border-radius:50%;background:url(img/bullet.png)"+";position:absolute; width:6px;height:22px";
+            bullets.style.left = plane.offsetLeft + 27 + 'px';
+            bullets.style.top =  plane.offsetTop + (-20) + 'px';
+            //子弹移动
+            var bulletFly = setInterval(function(){
+                    bullets.style.top = bullets.offsetTop + (-5) + 'px';
+                    //当子弹小于时删除
+                    if(bullets.offsetTop <= -20){
+                        clearInterval(bulletFly);
+                        map.removeChild(bullets)
+                    }
+            },10);
+            bullets.timer = bulletFly;
+        },1000);
+    }
+}
+//检测碰撞
+var pzjc = setInterval(function(){
+    var allEnemy = document.getElementsByClassName('enemys');
+    var allBullet = document.getElementsByClassName('bullet');
+    for(i=0;i<allBullet.length;i++){
+        for(j=0;j<allEnemy.length;j++){
+            b = allBullet[i];
+            e = allEnemy[j];
+            //console.log(b,e);
+            if(pz(b,e)){
+                clearInterval(b.timer);
+                clearInterval(e.timer);
+                map.removeChild(b);
+                map.removeChild(e);
+                jfq++;
+                var a = document.getElementsByClassName('jf').innerHTML='得分'+jfq;
+                break;
+            }
+        }
+    }
+},50)
+//随机数
+function rand(min,max){
+    return parseInt(Math.random() * (max - min) + (min));
+}
+//制作敌机
+var enemy = setInterval(function(){
+            var enemys = document.createElement('div');
+            enemys.className = 'enemys';
+            map.appendChild(enemys);
+            enemys.style.cssText = "background:url(img/enemy.png)"+";position:absolute; width:23px;height:30px";
+            enemys.style.left = rand(0,489) + 'px';
+            enemys.style.top =  '0px';
+            //敌机下坠
+            var enemysFly = setInterval(function(){
+                enemys.style.top = enemys.offsetTop + 5 + 'px';
+                    //当子弹小于时删除
+                    if(enemys.offsetTop >= 768){
+                        clearInterval(enemysFly);
+                        map.removeChild(enemys)
+                    }
+            },10)
+            enemys.timer = enemysFly;
+        },1000);
+
+//死亡检测
+var die = setInterval(function(){
+    var allEnemy = document.getElementsByClassName('enemys');
+    for(i=0;i<allEnemy.length;i++){
+        var dr = allEnemy[i];
+        if(pz(dr,plane)){
+            for(j=0;j<100;j++){
+                clearInterval(j);
+                clearTimeout(j);
+            }
+            alert('你死了');
+            location.reload();
+            break;
+        }
+    }
+},50)
+
+
+
+
+//检测函数
+        function pz(obj,obj1){
+            var objLeft = obj.offsetLeft;
+            var objWidth = objLeft + obj.offsetWidth;
+            var objTop = obj.offsetTop;
+            var objHeight = objTop + obj.offsetHeight;
+
+            var obj1Left = obj1.offsetLeft;
+            var obj1Width = obj1Left + obj1.offsetWidth;
+            var obj1Top = obj1.offsetTop;
+            var obj1Height = obj1Top + obj1.offsetHeight;
+            if(!(objLeft > obj1Width || objWidth < obj1Left || objTop > obj1Height || objHeight < obj1Top)){
+                return true;
+            }else{
+                return false;
+            }
+        }
+    /*plane.addEventListener('mousedown',function(e){
+        var ev = e || window.event;
+        basex = ev.pageX;
+        basey = ev.pageY;
+        movex = 0;
+        movey = 0;
+        //给地图添加鼠标移动事件
+        map.addEventListener('mousemove',function(e){
+            var evt = e || window.event;
+            movex = evt.pageX - basex;
+            basex = evt.pageX;
+            movey = evt.pageY - basey;
+            basey = evt.pageY;
+            plane.style.left = plane.offsetLeft + movex + 'PX';
+            plane.style.top = plane.offsetTop + movey + 'PX';
+        },false)
+    },false)*/
+   
+</script>

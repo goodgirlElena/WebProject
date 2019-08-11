@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+	</head>
+	<body>
+		<div id="app">
+			<router-link to="/account">Account</router-link>
+			<router-view></router-view>
+		</div> 
+		<template id="tmp1">
+			<div>
+				<h1>这是一个Account组件</h1>
+				<router-link to="/account/login">登录</router-link>
+				<router-link to="/account/register">注册</router-link>
+				<router-view></router-view>
+			</div>
+		</template>
+		
+		
+		<script src="js/vue.js"></script>
+		<script src="https://unpkg.com/vue-router/dist/vue-router.js "></script>
+		<script>
+			var account = {
+				template: '#tmp1'
+			}
+			var login = {
+				template: '<h1>登录組件</h1>'
+				
+			}
+			var register = {
+				template: '<h1>注册組件</h1>'
+				
+			}
+			var router = new VueRouter({
+				routes: [
+					{
+						path: '/account',
+						component: account,
+//					{path: '/account/login',component: login},
+//					{path: '/account/register',component: register}
+						//使用 children 属性，实现子路由，子路由的 path 前面不要带/， 否则永远从根目录下面去寻找路径
+						children: [
+							{path: 'login', component: login},
+							{path: 'register', component: register}
+						]
+					}
+				]
+			})
+			var vm = new Vue({
+				el: '#app',
+				data: {},
+				methods: {},
+				router
+			})
+		</script>
+	</body>
+</html>
