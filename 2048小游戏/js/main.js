@@ -152,7 +152,7 @@ $(document).keydown(function(event){
 	switch(event.keyCode)
 	{
 		case 37://left
-			event.preventDefault();
+			event.preventDefault();//取消按键按下时，默认的行为，即取消按键按下时，滚动滚动条行为
 			if(moveLeft())
 			{
 				setTimeout(creatOneNumber,210);

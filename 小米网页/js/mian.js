@@ -1,3 +1,4 @@
+//轮播图效果制作
 var images = {
 	1: "https://cdn.cnbj1.fds.api.mi-img.com/mi-mall/1c6280fb90ad60b4a94fc43ca67485a3.jpg?thumb=1&w=1226&h=460",
 	2:"https://cdn.cnbj1.fds.api.mi-img.com/mi-mall/0bf2f06a3b16b37c83a5991838e3e4c7.jpg?thumb=1&w=1226&h=460",
@@ -91,3 +92,63 @@ for(var i = 0; i < pictures.length; i++)
 		changePage();
 	},true)
 }
+
+
+//小米闪购倒计时
+var timeInterval;
+function countTime()
+{
+	var date = new Date();
+	var now = date.getTime();
+	//设置截止的时间
+	var str = "2019/8/25 20:37:00";
+	var endDate = new Date(str);
+	var end = endDate.getTime();
+	//时间差
+	timeInterval = end - now;
+	var h = 0, m = 0, s = 0;
+	if(timeInterval >= 0)
+	{
+		h = Math.floor(timeInterval/1000/60/60%24);
+		m = Math.floor(timeInterval/1000/60%60);
+		s = Math.floor(timeInterval/1000%60);
+	}
+	if(h < 10)
+	{
+		document.getElementById("h").innerHTML = "0" + h;
+	}
+	else
+	{
+		document.getElementById("h").innerHTML = h;
+	}
+	if(m < 10)
+	{
+		document.getElementById("m").innerHTML = "0" + m;
+	}
+	else
+	{
+		document.getElementById("m").innerHTML = m;
+	}
+	if(s < 10)
+	{
+		document.getElementById("s").innerHTML ="0" + s;
+	}
+	else
+	{
+		document.getElementById("s").innerHTML = s;
+	}
+	
+	if(timeInterval < 0)
+	{
+		clearInterval(timer);
+		var actText = document.getElementById("flash").getElementsByClassName("desc");
+		actText[0].innerHTML = "本场已结束";
+	}
+}
+
+$(function(){
+	var timer;
+	//递归每秒调用countTime方法，显示动态时间效果
+	timer = setInterval(countTime,1000);
+})
+
