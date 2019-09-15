@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html>
+
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+		<!--<script src="js/test.js"></script>-->
+		<style>
+			.box {
+				width: 300px;
+				height: 200px;
+				border: 1px solid;
+				text-align: center;
+				/*这个属性可以实现“水平”居中。*/
+			}
+			
+			.box::before {
+				/*用伪元素选择器来实现“垂直”居中。*/
+				content: '';
+				display: inline-block;
+				height: 100%;
+				/*使这个伪元素的高度等于盒子的高度，撑满父容器。*/
+				vertical-align: middle;
+			}
+			
+			.box img {
+				vertical-align: middle;
+				width: 150px;
+			}
+		</style>
+	</head>
+
+	<body>
+		<div class="box">
+			<img src="https://qdywxs.github.io/css-images/css13-img01.jpg" alt="">
+		</div>
+	</body>
+
+</html>

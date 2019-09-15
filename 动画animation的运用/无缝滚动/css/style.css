@@ -1,0 +1,41 @@
+* {
+	margin: 0;
+	padding: 0;
+}
+
+div {
+	width: 468px;
+	height: 101px;
+	border: 1px solid pink;
+	margin: 100px auto;
+	overflow: hidden;
+	/*position: relative;*/
+}
+
+ul {
+	list-style: none;
+}
+
+div ul {
+	/*position: absolute;
+				top: 0;
+				left: 0;*/
+	width: 200%;
+	/*给ul添加动画效果*/
+	animation: moving 5s linear infinite;
+	/*linear是匀速运动*/
+}
+
+div ul li {
+	float: left;
+}
+
+@keyframes moving {
+	from {
+		transform: translate(0, 0);
+		/*transform是CSS3新增的转换属性   translate是移动属性*/
+	}
+	to {
+		transform: translate(-468px, 0);
+	}
+}

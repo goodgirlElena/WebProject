@@ -1,0 +1,45 @@
+* {
+	margin: 0;
+	padding: 0;
+}
+
+#box {
+	width: 600px;
+	height: 500px;
+	margin: 0 auto;
+	border: double red;
+}
+
+.xing {
+	margin: 0 3px;
+	color: #d60000;
+}
+
+.txt {
+	margin: 2px 5px;
+	padding: 2px 5px;
+}
+
+textarea {
+	vertical-align: middle;
+}
+
+
+/*.txt1{
+	
+	float: left;
+	line-height: 144px;
+}*/
+
+.buttonstyle {
+	margin: 10px 230px;
+	text-align: center;
+}
+
+.note {
+	font-size: 14px;
+	color: #d3d3d3;
+}
+.icf {
+	display: none;
+}

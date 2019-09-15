@@ -1,0 +1,105 @@
+* {
+	margin: 0;
+	padding: 0;
+}
+body {
+	background-color: #6faed7;
+}
+#top {
+	width: 100%;
+	height: 46px;
+	/*background: url(../images/top_01.png) no-repeat 0 0;*/
+}
+#top>img {
+	width: 100%;
+}
+#content {
+	width: 1000px;
+	margin: 0 auto;
+	overflow: hidden;//清除浮动
+}
+#left {
+	width: 150px;
+	height: 1000px;
+	background: url(../images/left_03.png) no-repeat 0 0;
+	float: left;
+}
+#right {
+	margin-top: 15px;
+	width: 231px;
+	height: 166px;
+	background: url(../images/right_07.png) no-repeat 0 0;
+	float: right;
+}
+#message {
+	margin-top: 15px;
+	width: 600px;
+	height: 168px;
+	background: url(../images/content_05.png)no-repeat 0 0;
+	background-size: 600px 168px;
+	position: relative;
+	float: left;
+}
+textarea {
+	margin: 42px 11px;
+	width: 579px;
+	height: 78px;
+	/*background-color: red;*/
+	border: none;
+	resize: none;
+	outline: none;
+}
+button {
+	width: 82px;
+	height: 31px;
+	background-color: #ffc09f;
+	border: none;
+	outline: none;
+	position: absolute;
+	right: 9px;
+	top: 126px;
+}
+#comment {
+	width: 600px;
+	height: 1000px;
+	float: left;
+}
+#comment>.info {
+	margin-top: 10px;
+	padding: 10px 20px;
+	width: 600px;
+	background-color: white;
+	border-bottom: 2px solid #ccc;
+	box-sizing: border-box;
+}
+.info>.infoText {
+	margin-bottom: 10px;
+	line-height: 25px;
+	font-size: 14px;
+}
+.info>.infoOperation {
+	width: 100%;
+	overflow: hidden;//清除浮动 使其子元素的内容撑起父元素的高
+}
+.infoOperation>.infoTime {
+	font-size: 12px;
+	color: #ccc;
+	float: left;
+}
+.infoHandle {
+	float: right;
+	font-size: 12px;
+}
+.infoHandle>a {
+	padding-left: 25px;
+	margin-left: 10px;
+	color: #ccc;
+	text-decoration: none;
+	background: url(../images/icons.png) no-repeat 0 0;
+}
+.infoHandle>.infoDown {
+	background-position: 0 -17px;
+}
+.infoHandle>.infoDel {
+	background-position: 0 -33px;
+}

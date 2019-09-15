@@ -3,42 +3,8 @@
 	<head>
 		<meta charset="UTF-8">
 		<title>注册表单</title>
-		<style>
-			*{
-				margin: 0;
-				padding: 0;
-			}
-			#box{
-				width: 600px;
-				height: 500px;
-				margin: 0 auto;
-				border: double red;
-			}
-			.xing{
-				margin: 0 3px;
-				color: #d60000;
-			}
-			.txt{
-				margin: 2px 5px;
-				padding: 2px 5px;
-			}
-			textarea {
-				vertical-align: middle;
-			}
-			/*.txt1{
-				
-				float: left;
-				line-height: 144px;
-			}*/
-			.buttonstyle{
-				margin: 0 230px;
-				text-align: center;
-			}
-			.note{
-				font-size: 14px;
-				color: #d3d3d3;
-			}
-		</style>
+		<link rel="stylesheet" type="text/css" href="css/style.css"/>
+		<link rel="stylesheet" type="text/css" href="css/iconfont.css"/>
 	</head>
 	<body>
 		<div id="box">
@@ -47,14 +13,14 @@
 			<form action="#" method="post">
 				<span class="xing">　*</span>
 				验证码:
-				<input id="txtScode" class="txt" type="text"/><span></span><br/>
+				<input id="txtScode" class="txt" type="text"/><span class="iconfont icf">&#xe612;</span><br/>
 				<span class="xing">*</span>
 				<label for="ustel">手机号码:</label>
 				<input class="txt" id="ustel" type="text" name="usertel" maxlength="11"/>
 				<span  class="note">最多11个字符，列如：138123456711</span><br/>
 				<span class="xing">*</span>
 				电子邮箱:
-				<input id="mail" class="txt" type="text"/><span></span><br/>
+				<input id="mail" class="txt" type="text"/><span class="iconfont icf">&#xe612;</span><br/>
 				<span class="xing">*</span>
 				设置密码:
 				<input class="txt" type="password" name="password" maxlength="20"/>
@@ -100,41 +66,10 @@
 					提醒：你是否打啥打哈萨克 水电卡回答撒爱上打开，点击下面：
 				</p>
 				
-				<input class="buttonstyle" type="submit" value="我接受，创建我的用户"/>
+				<input class="buttonstyle" type="button" value="我接受，创建我的用户"/>
 				
 			</form>
 		</div>
-		<script type="text/javascript">
-			//文本框的验证封装成一个函数
-			//elementId:元素ID reg：正则表达式对象  tip：提示文本
-			function check(elementId,reg,tip)
-			{
-				var element = document.getElementById(elementId);
-				//onblur当光标离开文本框时，验证用户输入的内容是否正确
-				element.onblur = function(){
-					var span = this.nextElementSibling;
-					//检测用户输入的文本是否匹配指定的模式（正则表达式）
-					if(!reg.test(this.value))
-					{
-						//不匹配 在文本框后面的span中进行相应的提示
-						
-						span.innerText = tip;
-						span.style.color = "red";
-						span.style.fontSize = "14px";
-					}
-					else
-					{
-						span.innerText = "";
-						span.style.color = "";	
-						span.style.fontSize = "";
-					}
-				}
-			}
-			
-			//验证 验证码
-			check("txtScode",/^\d{4}$/,"请输入正确的验证码");
-			//验证邮箱
-			check("mail",/^\w+@\w+(\.\w+)+$/,"请输入正确的电子邮箱")
-		</script>
+		<script src="js/main.js" type="text/javascript"></script>
 	</body>
 </html>
