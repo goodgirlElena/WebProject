@@ -2,6 +2,14 @@
 <html>
 	<head>
 		<meta charset="UTF-8">
+		 <!--
+		 	width=device-width ：表示宽度是设备屏幕的宽度
+		 	initial-scale=1.0：表示初始的缩放比例
+			minimum-scale=0.5：表示最小的缩放比例
+			maximum-scale=2.0：表示最大的缩放比例
+			user-scalable=yes：表示用户是否可以调整缩放比例
+		  -->
+		 
 		<meta name="viewport" content="width=device-width,height=device-height,initial-scale=1.0,minimum-scale=1.0,maximum-scale=1.0,user-scalable=no" />
 		<title>2048小游戏</title>
 		<link rel="stylesheet" href="css/style.css" />
@@ -9,6 +17,7 @@
 	<body>
 		<header>
 			<h1>2048</h1>
+			<!--javascript:是表示在触发默认动作时，执行一段JavaScript代码-->
 			<a href="javascript:newGame()" id="newgamebutton">New Game</a>
 			<p>score: <span id="score">0</span></p>
 		</header>

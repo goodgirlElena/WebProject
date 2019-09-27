@@ -1,3 +1,11 @@
+/*
+ window.screen.availWidth 返回当前屏幕宽度(空白空间) 
+ window.screen.availHeight 返回当前屏幕高度(空白空间) 
+ window.screen.width 返回当前屏幕宽度(分辨率值) 
+ window.screen.height 返回当前屏幕高度(分辨率值) 
+ window.document.body.offsetHeight; 返回当前网页高度 
+ window.document.body.offsetWidth; 返回当前网页宽度
+ * */
 documentWidth = window.screen.availWidth;
 gridContainerWidth = 0.92 * documentWidth;
 cellSideLength = 0.18 * documentWidth;
