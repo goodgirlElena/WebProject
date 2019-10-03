@@ -46,7 +46,7 @@ textarea {
 	height: 78px;
 	/*background-color: red;*/
 	border: none;
-	resize: none;
+	resize: none; /*不允许改变输入框的大小*/
 	outline: none;
 }
 button {
@@ -79,7 +79,7 @@ button {
 }
 .info>.infoOperation {
 	width: 100%;
-	overflow: hidden;//清除浮动 使其子元素的内容撑起父元素的高
+	overflow: hidden; /*清除浮动 使其子元素的内容撑起父元素的高*/
 }
 .infoOperation>.infoTime {
 	font-size: 12px;

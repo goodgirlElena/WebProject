@@ -6,7 +6,7 @@
 #mainScreen{
 	width: 320px;
 	height: 480px;
-	margin: 0 auto;
+	margin: 50px auto;
 	position: relative;
 	overflow: hidden;
 }
@@ -22,26 +22,26 @@
 }
 /* 飞机 */
 #airplane{
-	width: 106px;
-	height: 100px;
+	width: 60px;
+	height: 36px;
 	background-image: url(../img/plane.png);
 	position: absolute;
-	left: 107px;
-	top: 380px;
+	left: 130px;
+	top: 440px;
 }
 .bullet{
 	position: absolute;
-	width: 5px;
-	height: 10px;
+	width: 6px;
+	height: 22px;
 	background-image: url(../img/bullet.png);
-	background-size: 5px 10px;
+	background-size: 6px 22px;
 }
 .tank{
 	position: absolute;
-	width: 40px;
-	height: 40px;
-	background-image: url(../img/plane2.png);
-	background-size: 40px 40px;
+	width: 23px;
+	height: 30px;
+	background-image: url(../img/enemy.png));
+	background-size: 23px 30px;
 }
 #Grade{
 	position: absolute;
@@ -50,20 +50,48 @@
 	background-color: black;
 	color: white;
 }
-#butt{
-	width: 60px;
-	height: 30px;
-	background-color: red;
+.start {
+	color: white;
+	text-shadow: 3px 3px rgba(1,1,1,.5);
+	font-size: 30px;
+	font-weight: bold;
 	position: absolute;
-	left: 130px;
-	top: 225px;
-}
-#butt1{
-	width: 60px;
-	height: 30px;
-	background-color: red;
-	position: absolute;
-	left: 130px;
-	top: 260px;
+	left: 50%;
+	top: 50%;
+	transform: translate(-50%,-50%);
+	cursor: pointer;
 }
 
+
+#mainScreen>.over {
+	display: none;
+	position: absolute;
+	top: 0;
+	left: 0;
+	padding-top: 100px;
+	box-sizing: border-box;
+	width: 100%;
+	height: 100%;
+	background-color: black;
+	text-align: center;
+}
+.over>h1 {
+	color: #FF4500;
+	text-shadow: 3px 3px white;
+}
+
+.over>div {
+	color: white;
+	margin: 30px auto;
+	font-size: 25px;
+}
+
+.over>.restart{
+	background-color: red;
+	color: white;
+	font-size: 20px;
+	line-height: 35px;
+	border-radius: 20px;
+	outline: none;
+	cursor: pointer;
+}

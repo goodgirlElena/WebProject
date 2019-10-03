@@ -1,0 +1,108 @@
+* {
+	margin: 0;
+	padding: 0;
+}
+.container {
+	margin: 50px auto;
+	width: 320px;
+	height: 480px;
+	background: url(../images/game_bg.jpg) no-repeat 0 0;
+	position: relative;
+}
+.container>h1 {
+	color: white;
+	margin-left: 60px;
+}
+.container>.progress {
+	width: 180px;
+	height: 16px;
+	position: absolute;
+    top: 66px;
+    left: 63px;
+    overflow: hidden;
+}
+.progress>img {
+	position: absolute;
+	top: 0;
+	left: 0;
+	/*width: 180px;
+	height: 16px;
+	border: none;*/
+}
+.container>.start {
+	width: 150px;
+	background: linear-gradient(#E55C3D,#C50000);
+	border-radius: 20px;
+	color: white;
+	font-size: 20px;
+	line-height: 35px;
+	text-align: center;
+	position: absolute;
+	top: 320px;
+	left: 50%;
+	transform: translateX(-50%);  /*等同于margin-left: -75px;*/
+	/*border: none;*/
+	outline: none;
+}
+.container>.rules {
+	width: 100%;
+	height: 20px;
+	background-color: #ccc;
+	border: none;
+	outline: none;
+	text-align: center;
+	position: absolute;
+	left: 0;
+	bottom: 0;
+}
+.container>.rule {
+	display: none;
+	width: 100%;
+	height: 100%;
+	padding-top: 120px;
+	box-sizing: border-box;
+	background-color: rgba(0,0,0,.5);
+	text-align: center;
+	position: absolute;
+	top: 0;
+	left: 0;
+}
+.rule>p {
+	margin-bottom: 20px;
+	color: white;
+}
+.rule>a {
+	color: red;
+}
+.container>.restart {
+	display: none;
+	width: 100%;
+	height: 100%;
+	padding-top: 200px;
+	box-sizing: border-box;
+	background-color: rgba(0,0,0,.5);
+	text-align: center;
+	position: absolute;
+	top: 0;
+	left: 0;
+}
+.restart>h1 {
+	color: #ff4500;
+	font-size: 30px;
+	text-shadow: 3px 3px 0 white;
+}
+.restart>button {
+	width: 150px;
+	background: linear-gradient(#74ACCF,#007DDC);
+	border-radius: 20px;
+	color: white;
+	font-size: 20px;
+	line-height: 35px;
+	text-align: center;
+	position: absolute;
+	top: 320px;
+	left: 50%;
+	transform: translateX(-50%);  /*等同于margin-left: -75px;*/
+	/*border: none;*/
+	outline: none;
+}

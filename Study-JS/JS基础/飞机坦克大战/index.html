@@ -9,12 +9,18 @@
 		<div id="mainScreen">
 			<div id="bg1" class="bg"></div>
 			<div id="bg2" class="bg"></div>
-			<button id="butt" onclick="start()">Start</button>
-			<button id="butt1" onclick="Restart()">ReStart</button>
+			<div class="start">开始游戏</div>
 			<div id="airplane"></div>
-			<div id="Grade">得分：0</div>
+			<div id="Grade">得分：<span>0</span></div>
+			<div class="over">
+				<h1>游戏结束</h1>
+				<div>得分：<span class="score">0</span></div>
+				<button class="restart">重新开始</button>
+			</div>
 		</div>
 	</body>
-	<script type="text/javascript" src="js/Flib.js"></script>
-	<script type="text/javascript" src="js/test.js"></script>
+	<script src="js/jquery-1.8.0.min.js"></script>
+	<script type="text/javascript" src="js/myFlib.js"></script>
+	<script type="text/javascript" src="js/jQueryWay.js"></script>
+	<!--<script src="js/JavaScriptWay.js"></script>-->
 </html>

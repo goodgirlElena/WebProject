@@ -1,0 +1,110 @@
+* {
+	margin: 0;
+	padding: 0;
+}
+
+.container {
+	margin: 50px auto;
+	width: 320px;
+	height: 480px;
+	background: url(../images/game_bg.jpg) no-repeat 0 0;
+	position: relative;
+}
+
+.container>.score {
+	color: white;
+	margin-left: 60px;
+	cursor: default;/*默认鼠标形状*/
+}
+
+.container>.progress {
+	width: 180px;
+	height: 16px;
+	background: url(../images/progress.png) no-repeat 0 0;
+	position: absolute;
+	top: 66px;
+	left: 63px;
+}
+
+.container>.start {
+	width: 150px;
+	color: white;
+	font-size: 20px;
+	line-height: 35px;
+	border-radius: 20px;
+	outline: none;
+	background: linear-gradient(#E55C3D,#C50000);
+	position: absolute;
+	top: 320px;
+	left: 50%;
+	transform: translateX(-50%);
+	cursor: pointer; /*将鼠标形状设置成可点击状态*/
+}
+/*设置游戏规则界面样式*/
+.container>.rules {
+	width: 100%;
+	height: 20px;
+	text-align: center;
+	background-color: #ccc;
+	border: none;
+	outline: none;
+	position: absolute;
+	left: 0;
+	bottom: 0;
+	cursor: pointer;
+}
+
+.container>.rule {
+	display: none;
+	box-sizing: border-box;
+	padding-top: 100px;
+	width: 100%;
+	height: 100%;
+	background-color: rgba(0,0,0,.5);
+	text-align: center;
+	position: absolute;
+	top: 0;
+	left: 0;
+}
+
+.rule>p {
+	color: white;
+	margin-bottom: 20px;
+}
+
+.rule>a {
+	color: red;
+}
+/*设置重新开始游戏界面的样式*/
+.container>.restart {
+	display: none;
+	padding-top: 200px;
+	box-sizing: border-box;
+	width: 100%;
+	height: 100%;
+	background-color: rgba(0,0,0,.5);
+	text-align: center;
+	position: absolute;
+	top: 0;
+	left: 0;
+}
+.restart>h1 {
+	color: #ff4500;
+	font-size: 30px;
+	text-shadow: 3px 3px white;
+}
+
+.restart>button {
+	width: 150px;
+	color: white;
+	font-size: 20px;
+	line-height: 35px;
+	border-radius: 20px;
+	outline: none;
+	background: linear-gradient(#74ACCF,#007DDC);
+	position: absolute;
+	top: 320px;
+	left: 50%;
+	transform: translateX(-50%);
+	cursor: pointer; /*将鼠标形状设置成可点击状态*/
+}
