@@ -1,0 +1,533 @@
+* {
+	margin: 0;
+	padding: 0;
+}
+li {
+	list-style: none;
+}
+
+a {
+	text-decoration: none;
+	color: white;
+	
+}
+
+html body {
+	width: 100%;
+	height: 100%;
+	color: rgba(255,255,255,.5);
+	font-size: 14px;
+}
+
+.mask_bg {
+	position: absolute;
+	top: 0;
+	left: 0;
+	width: 100%;
+	height: 100%;
+	background: url(../images/xiangqiaoyue.jpg) no-repeat 0 0;
+	background-size: cover;
+	filter: blur(100px);
+	z-index: -2;
+}
+
+.mask {
+	position: absolute;
+	top: 0;
+	left: 0;
+	width: 100%;
+	height: 100%;
+	background-color: rgba(0,0,0,.35);
+	z-index: -1;
+}
+
+.header {
+	width: 100%;
+	height: 48px;
+	/*background-color: red;*/
+	line-height: 48px;
+	user-select: none;
+}
+.header a {
+	margin-left: 20px;
+	opacity: 0.5;
+}
+
+.header a:hover {
+	opacity: 1;
+}
+
+.header li {
+	float: left;
+	margin-right: 20px;
+	color: white;
+	opacity: 0.5;
+}
+
+.header li:hover {
+	opacity: 1;
+}
+
+.header ul {
+	float: right;
+}
+
+.content {
+	width: 100%;
+	height: 460px;
+	/*background-color: blue;*/
+	user-select: none;
+}
+
+.content .content-core {
+	margin: 0 auto;
+	width: 1100px;
+	height: 100%;
+	/*background-color: pink;*/
+}
+
+.content-core .music-menu {
+	width: 700px;
+	height: 100%;
+	/*background-color: white;*/
+	float: left;
+}
+
+.music-menu .topbar {
+	width: 100%;
+	height: 35px;
+	/*background-color: black;*/
+}
+.topbar span {
+	display: inline-block;
+	width: 100px;
+	height: 100%;
+	text-align: center;
+	line-height: 35px;
+	border: 1px solid white;
+	border-radius: 5px;
+	color: white;
+	font-size: 14px;
+	opacity: 0.5;
+}
+.topbar span:hover {
+	opacity: 1;
+}
+.topbar span i {
+	display: inline-block;
+	width: 18px;
+	height: 18px;
+	background: url(../images/icon_sprite.png) no-repeat 0 0;
+	vertical-align: -5px;
+	margin-right: 10px;
+}
+
+.topbar span:nth-child(1) i{
+    background-position: -60px -20px;
+}
+.topbar span:nth-child(2) i{
+    background-position: -20px -20px;
+}
+.topbar span:nth-child(3) i{
+    background-position: -40px -240px;
+}
+.topbar span:nth-child(4) i{
+    background-position: -100px -20px;
+}
+.topbar span:nth-child(5) i{
+    background-position: -40px -300px;
+}
+
+.topbar span a {
+	color: white;
+	text-decoration: none;
+}
+
+.music-menu .music-list {
+	height: calc(100% - 35px);
+}
+
+.music-list li {
+	width: 100%;
+	height: 50px;
+	/*background-color: orchid;*/
+	line-height: 50px;
+	font-size: 14px;
+	border-bottom: 1px solid #ccc;
+	box-sizing: border-box;
+}
+
+
+.music-list li>span {
+	display: inline-block;
+	/*opacity: 0.5;*/
+	color: rgba(255,255,255,0.5);
+	vertical-align: bottom; /*解决鼠标悬停行内元素下移的问题*/
+	/*height: 100%;*/
+}
+.music-list li>span:first-child {
+	vertical-align: middle;
+}
+
+.music-list li .list-selcet {
+	width: 14px;
+	height: 14px;
+	border: 1px solid #fff;
+	opacity: 0.5;
+}
+
+.music-list li .list-selected {
+	background: url(../images/icon_sprite.png) no-repeat -60px -80px;
+	opacity: 1;
+}
+
+.music-list li .list-number {
+	width: 20px;
+	text-align: center;
+	/*opacity: 0.5;*/
+	/*height: 100%;*/
+	/*background-color: green;*/
+}
+
+.music-list li .list-number-icon {
+	color: transparent !important;
+    background: url("../images/wave.gif") no-repeat 0 center;
+}
+
+.music-list li .list-music {
+	width: 50%;
+	/*height: 100%;*/
+}
+
+/*.list-music span:first-child {
+	opacity: 0.5;
+}*/
+
+.list-music span:last-child {
+	float: right;
+	padding-top: 5px;
+	margin-right: 10px;
+	display: none;
+	height: 50px;
+	box-sizing: border-box;
+}
+
+.list-music a {
+	display: inline-block;
+	width: 36px;
+	height: 36px;
+	background: url(../images/icon_list_menu.png) no-repeat 0 0;
+	/*background-size: 50% 50%;*/
+	opacity: 0.5;
+}
+
+.list-music a:hover {
+	opacity: 1;
+}
+
+.list-music a:nth-child(1) {
+	background-position: -120px 0;
+}
+.list-music .playing {
+	background-position: -80px -200px !important;
+}
+
+.list-music a:nth-child(2) {
+	background-position: -120px -80px;
+}
+
+.list-music a:nth-child(3) {
+	background-position: -120px -120px;
+}
+
+.list-music a:nth-child(4) {
+	background-position: -120px -40px;
+}
+
+.music-list li .list-singer {
+	width: 20%;
+	/*opacity: 0.5;*/
+	/*height: 100%;*/
+}
+
+.music-list li .list-singer:hover {
+	color: white!important;
+}
+
+.list-time a {
+	display: inline-block;
+	width: 36px;
+	height: 36px;
+	background: url(../images/icon_list_menu.png) no-repeat -120px -160px;
+	margin-top: 5px;
+	float: left;
+	display: none;
+	margin: 7px 0;
+	vertical-align: middle;
+	opacity: 0.5;
+}
+.list-time a:hover {
+	opacity: 1;
+}
+
+.content-core .music-theme {
+	width: 400px;
+	height: 100%;
+	/*background-color: orange;*/
+	float: right;
+	user-select: none;
+}
+
+.music-theme .music-info {
+	color: rgba(255,255,255,.5);
+	line-height: 30px;
+	text-align: center;
+}
+
+.music-info .song_info_pic {
+	display: inline-block;
+	width: 201px;
+	height: 180px;
+	background: url(../images/album_cover_player.png) no-repeat 0 0;
+	text-align: left;
+	/*position: relative;*/
+}
+
+.song_info_pic img {
+	width: 180px;
+	height: 180px;
+}
+
+.music-info div a {
+	opacity: 0.5;
+}
+
+.music-info div a:hover {
+	opacity: 1;
+}
+.music-theme .music-lyric {
+	height: 150px;
+	margin-top: 50px;
+	text-align: center;
+	overflow: hidden;
+}
+	
+.music-lyric p{
+	color: rgba(225,225,225,.5);
+	line-height: 30px;
+	font-weight: bold;
+}
+.music-lyric .cur {
+	color: #31C27C;
+}
+
+.footer {
+	width: 100%;
+	height: 55px;
+	/*background-color: red;*/
+	position: absolute;
+	left: 0;
+	bottom: 0;
+	user-select: none;
+}
+
+.footer .footer-core {
+	width: 1100px;
+	margin: 0 auto;
+	/*background-color: green;*/
+	height: 100%;
+}
+
+.footer-core>a {
+	display: inline-block;
+	/*width: 21px;
+	height: 30px;*/
+	background: url(../images/player.png) no-repeat 0 0;
+	margin-right: 20px;
+	position: relative;
+}
+
+.footer-core .music_pre {
+	width: 19px;
+	height: 21px;
+	background-position:  0 -30px;
+	top: 10px;
+}
+
+.footer-core .music_play {
+	width: 21px;
+	height: 29px;
+	background-position:  0 0;
+	top: 12px;
+}
+
+.footer-core .music_playing {
+	background-position:  -30px 0;
+}
+
+.footer-core .music_next {
+	width: 19px;
+	height: 21px;
+	background-position: 0 -52px;
+	top: 10px;
+}
+
+.footer-core .music_progress,
+.footer-core .voice_progress_bar {
+	display: inline-block;
+}
+
+.footer-core .music_progress {
+	/*background-color: black;*/
+	/*position: relative;*/
+	/*top: 10px;*/
+	width: 567px;
+	height: 40px;
+}
+
+.music_progress .song_info {
+	width: 100%;
+	height: 20px;
+	/*background-color: red;*/
+}
+
+.song_info .music_progress_time {
+	float: right;
+	opacity: 0.5;
+}
+
+.music_progress .progress_bar {
+	width: 100%;
+	height: 4px;
+	background-color: rgba(255,255,255,.5);
+	border-radius: 2px;
+	margin-top: 5px;
+	position: relative;
+}
+
+.progress_bar .progress_width {
+	width: 0;
+	height: 4px;
+	background-color: white;
+	border-radius: 2px;
+}
+
+.progress_bar .progress_dot {
+	width: 10px;
+	height: 10px;
+	border-radius: 50%;
+	background-color: white;
+	position: absolute;
+	left: 0;
+	top: -3px;
+}
+
+/*循环播放*/
+.footer-core .music_mode {
+	width: 26px;
+    height: 25px;
+    background-position: 0 -205px;
+    top: 10px;
+}
+
+/*顺序播放*/
+.footer-core .music_mode2 {
+	width: 23px;
+    height: 20px;
+    background-position: 0 -260px;
+}
+
+/*随机播放*/
+.footer-core .music_mode3 {
+	width: 25px;
+    height: 19px;
+    background-position: 0 -74px;
+}
+/*单曲循环*/
+.footer-core .music_mode4 {
+	width: 26px;
+    height: 25px;
+    background-position: 0 -232px;
+}
+
+.footer-core .music_fav {
+	width: 24px;
+    height: 21px;
+    background-position: 0 -96px;
+    top: 10px;
+}
+
+.footer-core .music_fav2 {
+	background-position: -30px -96px;
+}
+
+
+.footer-core .music_down {
+	width: 22px;
+    height: 21px;
+    background-position: 0 -120px;
+    top: 10px;
+}
+
+.footer-core .music_comment {
+	width: 24px;
+    height: 24px;
+    background-position: 0 -400px;
+    top: 10px;
+}
+
+.footer-core .music_only {
+	width: 74px;
+    height: 27px;
+    background-position: 0 -281px;
+    top: 10px;
+}
+
+.footer-core .music_only2 {
+	background-position: 0 -310px;
+}
+
+.footer-core .voice_progress_bar {
+	width: 80px;
+	height: 4px;
+	background-color: rgba(255,255,255,.5);
+	border-radius: 2px;
+	position: relative;
+	right: -20px;
+}
+
+.voice_progress_bar .voice_icon {
+	display: inline-block;
+	width: 26px;
+	height: 21px;
+	background: url(../images/player.png) no-repeat 0 -144px;
+	position: absolute;
+	top: -8px;
+	left: -30px;
+}
+
+.voice_progress_bar .voice_icon2 {
+	background-position: 0 -182px;
+}
+
+.voice_progress_bar .voice_progress_width {
+	width: 80px;
+	height: 4px;
+	background-color: white;
+	border-radius: 2px;
+}
+
+.voice_progress_bar .voice_progress_dot {
+	width: 10px;
+	height: 10px;
+	border-radius: 50%;
+	background-color: white;
+	position: absolute;
+	top: -3px;
+	left: 80px;
+}
+
+
+._mCS_1 .mCSB_scrollTools .mCSB_dragger_bar { 
+	width: 8px;
+}
