@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+		<style>
+			* {
+				margin: 0;
+				padding: 0;
+			}
+/***************** 使用表格垂直居中vertical-align:middle ****************/
+			#wrapper {
+				width: 50px;
+				height: 50px;
+				background-color: red;
+				display: inline-block;
+				vertical-align: middle;
+			}
+			#box {
+				margin: 50px auto;
+				width: 200px;
+				height: 200px;
+				background-color: blue;
+			}
+			.help {
+				width: 0;
+				height: 100%;
+				vertical-align: middle;
+				display: inline-block;
+			}
+		
+		</style>
+	</head>
+	<body>
+		<div id="box">
+			<div class="help"></div>
+			<div id="wrapper">
+			</div>
+		</div>
+	</body>
+</html>
