@@ -25,6 +25,7 @@
 					key在使用的时候，必须使用 v-bind 属性绑定的形式，指定 key 的值
 					在组件中，使用v-for循环的时候，或者在一些特殊情况中，如果 v-for 有问题，必须在使用
 					v-for的同时，指定 唯一的字符串、数字类型的 :key 值
+					属性绑定key是让组件中data中的数据与页面上的数据强制关联起来
 			-->
 			<p v-cloak v-for="item in list" :key="item.id">
 				<input type="checkbox" />{{item.id}}------{{ item.name }}

@@ -101,7 +101,7 @@ function countTime()
 	var date = new Date();
 	var now = date.getTime();
 	//设置截止的时间
-	var str = "2019/8/25 20:37:00";
+	var str = "2019/10/9 9:42:00";
 	var endDate = new Date(str);
 	var end = endDate.getTime();
 	//时间差
@@ -146,9 +146,9 @@ function countTime()
 	}
 }
 
-$(function(){
+//$(function(){
 	var timer;
 	//递归每秒调用countTime方法，显示动态时间效果
 	timer = setInterval(countTime,1000);
-})
+//})
 

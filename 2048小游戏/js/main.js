@@ -300,7 +300,7 @@ function moveLeft()
 						//Add Score
 						score += board[i][k];
 						setTimeout("updateScore(score)",400);
-						hasConflicted[i][j] = true;
+						hasConflicted[i][k] = true;
 						flag = 1;
 						continue;
 					}
@@ -309,6 +309,7 @@ function moveLeft()
 		}
 		
 	}
+	//nospace(board)条件解决了不能右移但还是产生随机数字方块的问题
 	if(flag === 1 || nospace(board))
 	{
 		setTimeout(updateBoardView,200)
@@ -356,7 +357,7 @@ function moveUp()
 						//Add Score
 						score += board[k][j];
 						setTimeout("updateScore(score)",400);
-						hasConflicted[i][j] = true;
+						hasConflicted[k][j] = true;
 						flag = 1;
 						continue;
 					}
@@ -410,7 +411,7 @@ function moveRight()
 						//Add Score
 						score += board[i][k];
 						setTimeout("updateScore(score)",400);
-						hasConflicted[i][j] = true;
+						hasConflicted[i][k] = true;
 						flag = 1;
 						continue;
 					}
@@ -464,7 +465,7 @@ function moveDown()
 						//Add Score
 						score += board[k][j];
 						setTimeout("updateScore(score)",400);
-						hasConflicted[i][j] = true;
+						hasConflicted[k][j] = true;
 						flag = 1;
 						continue;
 					}
