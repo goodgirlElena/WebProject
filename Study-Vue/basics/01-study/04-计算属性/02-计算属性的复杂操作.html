@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>计算属性的复杂操作</title>
+</head>
+<body>
+<div id="app">
+  <h2>总价格：{{totalPrice}}</h2>
+</div>
+<script src="../js/vue.js"></script>
+<script>
+  let vm = new Vue({
+    el: '#app',
+    data: {
+      books: [
+        {id: 110, name: 'Unix编程艺术', price: 109},
+        {id: 111, name: '代码大全', price: 100},
+        {id: 112, name: '深入理解计算机原理', price: 120},
+        {id: 113, name: '现代操作系统', price: 89}
+      ]
+    },
+    computed: {
+      totalPrice: function () {
+        // let result = 0;
+      // 比较 三种for循环的不同之处
+        // for(let i = 0; i < this.books.length; i++)
+        // {
+        //   result += this.books[i].price;
+        // }
+
+        // for(let i in this.books)
+        // {
+        //   result += this.books[i].price;
+        // }
+
+        // for(let book of this.books)
+        // {
+        //   result += book.price;
+        // }
+
+
+        let result = this.books.reduce(function(total,book){
+          return total + book.price;
+        });
+        return result;
+      }
+    }
+  })
+</script>
+</body>
+</html>

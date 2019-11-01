@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Title</title>
+</head>
+<body>
+<div id="app">
+  {<img v-bind:src="imgURL" alt="小骨">
+</div>
+<script src="../js/vue.js"></script>
+<script>
+  let vm = new Vue({
+    el: '#app',
+    data: {
+      message: "为什么我总是会遇到各式各样奇怪的问题？？？",
+      imgURL: "https://wx1.sinaimg.cn/large/59853be1ly1g8hj3kfv5cj20f408iwsp.jpg"
+    }
+  })
+</script>
+</body>
+</html>

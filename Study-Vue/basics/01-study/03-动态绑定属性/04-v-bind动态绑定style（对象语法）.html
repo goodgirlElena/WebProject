@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>动态绑定style---对象语法</title>
+</head>
+<body>
+<div id="app">
+  <!--50px必须加上单引号，否侧vue会将其当做变量来解析-->
+  <!--<h1 :style="{ fontSize: '50px',backgroundColor: finalBColor }">{{ message }}</h1>-->
+
+  <h1 :style="{ fontSize: finalSize + 'px',backgroundColor: finalBColor }">{{ message }}</h1>
+  <h1 :style="getStyles()">{{ message }}</h1>
+</div>
+<script src="../js/vue.js"></script>
+<script>
+  let vm = new Vue({
+    el: '#app',
+    data: {
+       message: "我真的和无奈！",
+      finalSize: 50,
+      finalBColor: 'red'
+    },
+    methods: {
+      getStyles: function () {
+        return { fontSize: this.finalSize + 'px',backgroundColor: this.finalBColor }
+      }
+    }
+  })
+</script>
+</body>
+</html>

@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Mustache语法</title>
+</head>
+<body>
+<div id="app">
+  <!-- Mustache 语法 也就是我们说的双大括号-->
+  <h1>{{ message }} </h1>
+  <h1>{{firstName}}</h1>
+  <!--在 Mustache 语法中，我们不仅能够直接使用变量，也可以使用表达式-->
+  <h1>{{ firstName + lastName}}</h1>
+  <h1>{{ firstName + " " + lastName}}</h1>
+  <h1>{{ firstName}} {{lastName}}</h1>
+  <h1>{{ counter * 2}}</h1>
+</div>
+<script src="../js/vue.js"></script>
+<script>
+  let vm = new Vue({
+    el: '#app',
+    data: {
+      message: "为什么我总是会遇到各式各样奇怪的问题？？？",
+      firstName: 'Elena',
+      lastName: 'Kang',
+      counter: 100
+    }
+  })
+</script>
+</body>
+</html>

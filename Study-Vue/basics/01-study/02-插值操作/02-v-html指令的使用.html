@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>v-on指令的使用</title>
+</head>
+<body>
+<div id="app">
+  <!--直接用{{}} 显示数据到页面上-->
+  <h1>{{ url }} </h1>
+  <!--使用v-html指令显示数据到页面上-->
+  <h1 v-html="url"></h1>
+  <h1 v-html="message"></h1>
+</div>
+<script src="../js/vue.js"></script>
+<script>
+  let vm = new Vue({
+    el: '#app',
+    data: {
+      message: "为什么我总是会遇到各式各样奇怪的问题？？？",
+      url: "<a href='http://www.baidu.com'>百度一下</a>"//假设这是我们从服务器请求下来的数据
+    }
+  })
+</script>
+</body>
+</html>
