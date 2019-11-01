@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>数组方法</title>
+  <style>
+    .red {
+      color: red;
+    }
+    .thin {
+      font-weight: normal;
+    }
+  </style>
+</head>
+<body>
+<div id="app">
+  <!--
+    数组语法：
+    <h1 :class="[变量名，变量名]">{{ message }} </h1>
+    -->
+  <h1 :class="[ red,thin]">{{ message }} </h1>
+  <!--区别 :class="[ red,thin]" 与 :class="[ 'red','thin']" 的不同
+            前者 red、thin 是变量名
+            后者 red、thin 是字符串
+  -->
+  <!--<h1 :class="[ 'red','thin']">{{ message }} </h1>-->
+  <!--当需要动态绑定的属性值太多时，可以定义一个方法来返回这些属性值-->
+  <h1 :class="getClass()">{{ message }} </h1>
+</div>
+<script src="../js/vue.js"></script>
+<script>
+  let vm = new Vue({
+    el: '#app',
+    data: {
+      message: "为什么我总是会遇到各式各样奇怪的问题？？？",
+      red:" red",
+      thin: 'thin'
+    },
+    methods: {
+      btnClick: function () {
+        this.isRed = !this.isRed;
+      },
+      getClass: function () {
+        return [this.red,this.thin]
+      }
+    }
+  })
+</script>
+</body>
+</html>

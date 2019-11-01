@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:v-on="http://www.w3.org/1999/xhtml">
+<head>
+  <meta charset="UTF-8">
+  <title>列表案例</title>
+  <style>
+    .red {
+      color: #f00;
+    }
+  </style>
+</head>
+<body>
+<div id="app">
+  <ul>
+    <li v-for="(item,index) in movies" v-on:click="Click" :class="{ red: isRed}" :key="index">{{ item }}</li>
+  </ul>
+</div>
+<script src="../js/vue.js"></script>
+<script>
+  let vm = new Vue({
+    el: '#app',
+    data: {
+       movies: ['印式英语','狼牙','绿皮书','攀登者'],
+      isRed: false
+    },
+    methods: {
+      Click: function () {
+        this.isRed = !this.isRed;
+      }
+    }
+  })
+</script>
+</body>
+</html>

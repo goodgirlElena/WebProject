@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>v-on指令的使用</title>
+</head>
+<body>
+<div id="app">
+  <h1>{{ message }} </h1>
+  <!-- v-once 指令用在那些数据值允许改变一次的地方，
+      当我们在控制台动态改变message数据时，下面的message数据不会新的数据替换-->
+  <h1 v-once>{{ message }} </h1>
+</div>
+<script src="../js/vue.js"></script>
+<script>
+  let vm = new Vue({
+    el: '#app',
+    data: {
+        message: "为什么我总是会遇到各式各样奇怪的问题？？？"
+    }
+  })
+</script>
+</body>
+</html>

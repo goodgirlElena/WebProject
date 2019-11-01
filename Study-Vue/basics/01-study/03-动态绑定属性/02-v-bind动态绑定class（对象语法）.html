@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>对象方法</title>
+  <style>
+    .red {
+      color: red;
+    }
+    .thin {
+      font-weight: normal;
+    }
+  </style>
+</head>
+<body>
+<div id="app">
+  <!--
+    对象语法：
+    <h1 :class="{ 类名:boolean,类名:boolean}">{{ message }} </h1>
+    -->
+  <h1 :class="{ red:isRed,thin:isThin}">{{ message }} </h1>
+  <!--当需要动态绑定的属性值太多时，可以定义一个方法来返回这些属性值-->
+  <h1 :class="getClass()">{{ message }} </h1>
+  <button v-on:click="btnClick">反转</button>
+</div>
+<script src="../js/vue.js"></script>
+<script>
+  let vm = new Vue({
+    el: '#app',
+    data: {
+      message: "为什么我总是会遇到各式各样奇怪的问题？？？",
+      isRed: true,
+      isThin: false
+    },
+    methods: {
+      btnClick: function () {
+        this.isRed = !this.isRed;
+      },
+      getClass: function () {
+        return {red: this.isRed,thin: this.isThin}
+      }
+    }
+  })
+</script>
+</body>
+</html>
