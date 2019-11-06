@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>v-model结合单选框来使用</title>
+</head>
+<body>
+<div id="app">
+  <label for="male">
+    <!-- 当使用v-model绑定sex时，可以不使用name属性
+          name属性是用来标志这一对单选是互斥的-->
+    <input type="radio" name="sex" id="male" value="男" v-model="sex">男
+  </label>
+  <label for="female">
+    <input type="radio" name="sex" id="female" vaule="女" v-model="sex">女
+  </label>
+  <h1>你的性别是：{{sex}}</h1>
+</div>
+<script src="../js/vue.js"></script>
+<script>
+  let vm = new Vue({
+    el: '#app',
+    data: {
+      sex: ''
+    }
+  })
+</script>
+</body>
+</html>

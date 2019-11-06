@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>v-for循环遍历对象</title>
+</head>
+<body>
+<div id="app">
+  <ul>
+    <!-- 1. 只循环遍历对象的值-->
+    <!--<li v-for="value in info">{{value}}</li>-->
+
+    <!--2. 循环遍历对象的键值-->
+    <!--<li v-for="(value,key) in info">{{key}}-&#45;&#45;{{value}}</li>-->
+
+    <!--3. 循环遍历对象的键值和索引-->
+    <li v-for="(value,key,index) in info">{{index}}---{{key}}---{{value}}</li>
+  </ul>
+</div>
+<script src="../js/vue.js"></script>
+<script>
+  let vm = new Vue({
+    el: '#app',
+    data: {
+      info: {
+        name: 'Elena',
+        age: 23,
+        height: 1.65
+      }
+    }
+  })
+</script>
+</body>
+</html>

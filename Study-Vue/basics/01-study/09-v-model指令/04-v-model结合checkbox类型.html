@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>v-model 结合checkbox来使用</title>
+</head>
+<body>
+<div id="app">
+  <!-- checkbox既可以用来作为多选框也可以用来作为单选框-->
+  <!-- 1. checkbox 单选框-->
+  <!--<input type="checkbox" v-model="isAgree">同意协议-->
+  <!--<br>-->
+  <!--<button :disabled="!isAgree">下一步</button>-->
+
+  <!--2. checkbox 多选框-->
+  <input type="checkbox" v-model="hobbies" value="唱歌">唱歌
+  <input type="checkbox" v-model="hobbies" value="跳舞">跳舞
+  <input type="checkbox" v-model="hobbies" value="弹吉他">弹吉他
+  <h1>您的爱好有：{{hobbies}}</h1>
+
+  <!--值绑定 利用v-bind 动态绑定checkbox的value值
+      通常情况下，我们是从服务器上将数据拿下来再进行渲染，
+      所以通常情况下都是按照如下方式编写代码-->
+  <label v-for="item in originHobbies" :for="item">
+    <input type="checkbox" v-model="hobbies" :value="item" :id="item">{{item}}
+  </label>
+</div>
+<script src="../js/vue.js"></script>
+<script>
+  let vm = new Vue({
+    el: '#app',
+    data: {
+      isAgree: false, //针对于单选的双向绑定
+      hobbies: [], //针对于多选的双向绑定
+      originHobbies: ['唱歌','跳舞','弹吉他','弹钢琴','吹喇叭']
+    }
+  })
+</script>
+</body>
+</html>

@@ -12,7 +12,12 @@
 <body>
 <div id="app">
   <ul>
-    <li v-for="(item,index) in movies" v-on:click="Click" :class="{ red: isRed}" :key="index">{{ item }}</li>
+    <!-- 使用currentIndex来记录当前索引值
+          通过将每个li的索引值与currentIndex进行比较 达到相应的业务逻辑目标-->
+    <li v-for="(item,index) in movies"
+        @click="liClick(index)" :class="{ red: index === currentIndex}">
+        {{ item }}
+    </li>
   </ul>
 </div>
 <script src="../js/vue.js"></script>
@@ -21,11 +26,11 @@
     el: '#app',
     data: {
        movies: ['印式英语','狼牙','绿皮书','攀登者'],
-      isRed: false
+      currentIndex: 0
     },
     methods: {
-      Click: function () {
-        this.isRed = !this.isRed;
+      liClick: function (index) {
+        this.currentIndex = index;
       }
     }
   })

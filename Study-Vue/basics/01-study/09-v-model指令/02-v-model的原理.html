@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>v-model 的原理</title>
+</head>
+<body>
+<div id="app">
+  <!--<input type="text" :value="message" @input="inputEvent">-->
+  <!--input标签有一个内置的input事件，用来监听文本框的内容变化
+      利用v-bind 和 v-on 两个指令实现v-model指令的功能-->
+  <input type="text" :value="message" @input="message = $event.target.value">
+  {{ message }}
+</div>
+<script src="../js/vue.js"></script>
+<script>
+  let vm = new Vue({
+    el: '#app',
+    data: {
+      message: "我太难了！"
+    },
+    methods: {
+      inputEvent(event){
+        this.message = event.target.value;
+      }
+    }
+  })
+</script>
+</body>
+</html>

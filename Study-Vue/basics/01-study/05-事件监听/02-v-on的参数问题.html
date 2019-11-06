@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>v-on的参数问题</title>
+</head>
+<body>
+<div id="app">
+  <!--1. 当监听事件不需要传递参数时，方法后面的（）加不加效果都是一样的-->
+  <!--<button @click="btn1Click">按钮1</button>-->
+  <button @click="btn1Click()">按钮1</button>
+
+  <!--2. 当监听的事件（方法）在定义时，需要一个参数，
+          但在调用这个方法的时候没有传入参数，则此时将undefined传给方法的形参
+          如果省略了方法的()，则会自动将浏览器生产的事件event传给形参
+          如果调用时，传入了参数，则照常显示
+   -->
+  <!--<button @click="btn2Click()">按钮2</button>-->
+  <!--<button @click="btn2Click">按钮2</button>-->
+  <button @click="btn2Click('abc')">按钮2</button>
+
+  <!--3. 当监听的事件（方法）在定义时，如果需要传入某个参数，
+          同时需要event（浏览器自动生成的）时，可以通过$event传入事件
+   -->
+  <button @click="btn3Click(123,$event)">按钮3</button>
+</div>
+<script src="../js/vue.js"></script>
+<script>
+  let vm = new Vue({
+    el: '#app',
+    data: {
+    },
+    methods: {
+      btn1Click(){
+        console.log('btn1Click');
+      },
+      btn2Click(event){
+        console.log('------',event);
+      },
+      btn3Click(value,event){
+        console.log('++++++', value, event);
+      }
+    }
+  })
+</script>
+</body>
+</html>

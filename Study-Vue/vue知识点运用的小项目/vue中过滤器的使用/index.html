@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+		<style>
+			[v-cloak] {
+				display: none;
+			}
+		</style>
+	</head>
+	<body>
+		<div id="app">
+			<p v-cloak>{{ msg | msgFormat("高智商") }}</p>
+			<!--过滤器可以多次调用-->
+			<p v-cloak>{{ msg | msgFormat("高智商") | test }}</p>
+		</div>
+		<script src="js/vue.js"></script>
+		<script src="https://unpkg.com/vue-router/dist/vue-router.js "></script>
+		<script>
+			//定义一个 Vue 全局过滤器，名字叫做 msgFormat
+			//过滤器函数可以传无数个参数，但是第一个参数是固定的，固定为需要处理的数据，即为管道符（ | ）前面的变量
+			Vue.filter("msgFormat",function(msg,repla,repla1){
+				//字符串的 replace 方法，第一个参数，除了可写一个字符串之外，还可以定义一个正则表达式
+//				return msg.replace("单纯",repla);
+				return msg.replace(/单纯/g,repla+repla1);
+			})
+			
+			Vue.filter("test",function(msg){
+				return msg + "======="
+			})
+			var vm = new Vue({
+				el: '#app',
+				data: {
+					msg: "曾经，我也是一个单纯的少年，单纯的我，喜欢单纯的人，单纯的事！"
+				},
+				methods: {}
+			})
+		</script>
+	</body>
+</html>
