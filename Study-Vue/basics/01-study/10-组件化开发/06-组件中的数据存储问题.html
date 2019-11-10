@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>组件中的数据存储问题</title>
+</head>
+<body>
+<div id="app">
+  <cpn></cpn>
+</div>
+<template id="cpn">
+  <div>
+    <h1>{{title}}</h1>
+    <p>我是段落</p>
+  </div>
+</template>
+<script src="../js/vue.js"></script>
+<script>
+  // 注册一个全局组件
+  Vue.component('cpn',{
+    template: '#cpn',
+    data( ){// 每个组件都有自己的数据和方法
+      return {
+        title: 'I am title'
+      }
+    }
+  })
+  let vm = new Vue({
+    el: '#app',
+    data: {
+      message: "我太难了！",
+      title: '我是标题'  //组件不能引用Vue实例中的数据
+    }
+  })
+</script>
+</body>
+</html>

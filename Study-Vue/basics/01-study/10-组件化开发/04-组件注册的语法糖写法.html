@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>组件注册语法糖写法</title>
+</head>
+<body>
+<div id="app">
+  <cpn></cpn>
+</div>
+<script src="../js/vue.js"></script>
+<script>
+  // 直接使用一个对象代替之前的组件构造器-------Vue.extend({})
+  //注册一个全局的组件
+  Vue.component('cpn',{
+    template: `
+    <div>
+      <h1>我是标题</h1>
+      <p>我是段落</p>
+    </div>`
+  })
+  let vm = new Vue({
+    el: '#app',
+    data: {
+      message: "我太难了！"
+    }
+  })
+</script>
+</body>
+</html>

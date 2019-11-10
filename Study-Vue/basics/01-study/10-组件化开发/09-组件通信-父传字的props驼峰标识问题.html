@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>父传字的props驼峰标识问题</title>
+</head>
+<body>
+<div id="app">
+  <!--
+      在之前的Vue版本中，不支持驼峰标识命名方式，
+      所以采用如下的 短横线代替驼峰标识的写法
+      但是在子组件当中使用变量名时，还是用驼峰标识命名的变量名
+   -->
+  <!--<cpn :c-movies="movies" :c-message="message"></cpn>-->
+  <cpn :cMovies="movies" :cMessage="message"></cpn>
+</div>
+<template id="cpn">
+  <div>
+    <ul>
+      <li v-for="item in cMovies">{{item}}</li>
+    </ul>
+    <p>{{cMessage}}</p>
+  </div>
+</template>
+<script src="../js/vue.js"></script>
+<script>
+  Vue.component('cpn',{
+    template: '#cpn',
+    props: {
+      cMovies: Array,
+      cMessage: String
+    }
+  })
+  let vm = new Vue({
+    el: '#app',
+    data: {
+      message: "我太难了！",
+      movies: ['中国机长','印式英语','烈火英雄']
+    }
+  })
+</script>
+</body>
+</html>

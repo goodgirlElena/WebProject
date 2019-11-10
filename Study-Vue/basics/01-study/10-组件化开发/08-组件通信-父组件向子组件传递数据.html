@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>父组件向子组件传递数据</title>
+</head>
+<body>
+<div id="app">
+  <cpn :cmovies="movies" :cmessage="message"></cpn>
+</div>
+<template id="cpn">
+  <div>
+    <ul>
+      <li v-for="item in cmovies">{{item}}</li>
+    </ul>
+    <p>{{cmessage}}</p>
+  </div>
+</template>
+<script src="../js/vue.js"></script>
+<script>
+  Vue.component('cpn',{
+    template: '#cpn',
+    props: {
+      cmovies: Array,
+      cmessage: String
+    }
+  })
+  let vm = new Vue({
+    el: '#app',
+    data: {
+      message: "我太难了！",
+      movies: ['中国机长','印式英语','烈火英雄']
+    }
+  })
+</script>
+</body>
+</html>

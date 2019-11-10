@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>07-组件中数据是函数的原因</title>
+</head>
+<body>
+<div id="app">
+  <!--复用同一个组件，但是它们并没有共用一个数据-->
+  <cpn></cpn>
+  <cpn></cpn>
+  <cpn></cpn>
+</div>
+<template id="cpn">
+  <div>
+    <h1>当前计数：{{counter}}</h1>
+    <button @click="increment">+</button>
+    <button @click="decrement">-</button>
+  </div>
+</template>
+<script src="../js/vue.js"></script>
+<script>
+  // 注册一个全局组件
+  Vue.component('cpn',{
+    template: '#cpn',
+    data(){ // vue将组件中的数据规定定义成一个函数返回一个对象的原因是为了防止同一个组件在复用时
+            // 出现共享数据的情况
+      return {
+        counter: 0
+      }
+    },
+    methods: {
+      increment(){
+        this.counter++;
+      },
+      decrement(){
+        this.counter--;
+      }
+    }
+  })
+  let vm = new Vue({
+    el: '#app',
+    data: {
+      message: "我太难了！"
+    }
+  })
+</script>
+</body>
+</html>

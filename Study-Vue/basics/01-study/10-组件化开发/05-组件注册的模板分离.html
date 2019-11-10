@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>组件注册的模板分离</title>
+</head>
+<body>
+<div id="app">
+  <cpn></cpn>
+</div>
+<!-- 模板分离写法有两种方式 1. 使用script标签  2. 使用template标签-->
+<!-- 1. 使用script标签-->
+<!--<script type="text/x-template" id="cpn">-->
+  <!--<div>-->
+    <!--<h1>我是标题1</h1>-->
+    <!--<p>我是段落1</p>-->
+  <!--</div>-->
+<!--</script>-->
+
+<!-- 2. 使用template标签-->
+<template id="cpn">
+  <div>
+    <h1>我是标题1</h1>
+    <p>我是段落1</p>
+  </div>
+</template>
+<script src="../js/vue.js"></script>
+<script>
+  // 注册一个全局组件
+  Vue.component('cpn',{
+    template: '#cpn'
+  })
+  let vm = new Vue({
+    el: '#app',
+    data: {
+      message: "我太难了！"
+    }
+  })
+</script>
+</body>
+</html>
