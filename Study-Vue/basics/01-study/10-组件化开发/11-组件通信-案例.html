@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>组件通信的案例</title>
+</head>
+<body>
+<div id="app">
+  <cpn :number1="num1"
+       :number2="num2"
+       @input1change="input1change"
+       @input2change="input2change"/>
+</div>
+
+<template id="cpn">
+  <div>
+    <h1>props:{{number1}}</h1>
+    <h1>data:{{dnumber1}}</h1>
+    <!--<input type="text" v-model="number1">-->
+    <input type="text" :value="dnumber1" @input="input1change">
+    <h1>props:{{number2}}</h1>
+    <h1>data:{{dnumber2}}</h1>
+    <!--<input type="text" v-model="number2">-->
+    <input type="text" :value="dnumber2" @input="input2change">
+  </div>
+</template>
+<script src="../js/vue.js"></script>
+<script>
+  let vm = new Vue({
+    el: '#app',
+    data: {
+      num1: 1,
+      num2: 0
+    },
+    components: {
+      cpn: {
+        template: '#cpn',
+        props: {
+          number1: Number,
+          number2: Number
+        },
+        data(){ // 当需要通过子组件去改变父组件传过来的数据时，
+                // 需要将父组件的数据在子组件的data数据中再次定义，即如下操作
+          return {
+            dnumber1: this.number1,
+            dnumber2: this.number2
+          }
+        },
+        methods: {
+          input1change(event){
+            // 1. 双向绑定数据
+            this.dnumber1 = event.target.value;
+            // 2. 将子组件的数据又传回给父组件
+            this.$emit('input1change',this.dnumber1);
+
+            // 3. 修改第二个输入框的内容
+            this.dnumber2 = this.dnumber1 * 100;
+            this.$emit('input2change',this.dnumber2);
+          },
+          input2change(event){
+            this.dnumber2 = event.target.value;
+            this.$emit('input2change',this.dnumber2);
+            this.dnumber1 = this.dnumber2 / 100;
+            this.$emit('input1change',this.dnumber1);
+          }
+        }
+      }
+    },
+    methods: {
+      input1change(value){
+        this.num1 = parseFloat(value);
+      },
+      input2change(value){
+        this.num2 = parseFloat(value);
+      }
+    }
+  })
+</script>
+</body>
+</html>

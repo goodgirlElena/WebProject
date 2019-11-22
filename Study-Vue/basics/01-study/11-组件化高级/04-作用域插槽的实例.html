@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>作用域插槽的使用</title>
+</head>
+<body>
+<div id="app">
+  <cpn></cpn>
+  <cpn>
+    <!--使用template标签的目的是获取子组件中的movies数据，
+        在vue.2.5.x以下版本必须使用template标签，在vue.2.5.x以上版本则随便使用任何标签
+    -->
+    <template slot-scope="slot">
+      <span>{{slot.data.join("-")}}</span>
+    </template>
+  </cpn>
+  <cpn>
+    <template slot-scope="slot">
+      <span>{{slot.data.join("*")}}</span>
+    </template>
+  </cpn>
+</div>
+
+<template id="cpn">
+  <div>
+    <slot :data="movies">
+      <ul>
+        <li v-for="item in movies">{{item}}</li>
+      </ul>
+    </slot>
+  </div>
+</template>
+<script src="../js/vue.js"></script>
+<script>
+  let vm = new Vue({
+    el: '#app',
+    data: {
+      message: "我太难了！"
+    },
+    components: {
+      cpn: {
+        template: '#cpn',
+        data(){
+          return {
+            movies: ['中国机长','攀登者','印式英语','烈火英雄']
+        }
+        }
+      }
+    }
+  })
+</script>
+</body>
+</html>

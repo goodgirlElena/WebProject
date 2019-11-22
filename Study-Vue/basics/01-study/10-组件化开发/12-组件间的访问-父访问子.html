@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>父组件访问子组件</title>
+</head>
+<body>
+<div id="app">
+  <cpn></cpn>
+  <cpn></cpn>
+  <cpn></cpn>
+  <cpn ref="fourth"></cpn>
+  <button @click="btnClick">按钮</button>
+</div>
+
+<template id="cpn">
+  <div>我是子组件</div>
+</template>
+<script src="../js/vue.js"></script>
+<script>
+  let vm = new Vue({
+    el: '#app',
+    data: {
+      message: "我太难了！"
+    },
+    methods: {
+      btnClick()
+      {
+        // 父组件访问子组件的方法与属性
+        // 方法一：
+        // console.log(this.$children[0].name);
+        // this.$children[0].showMessage();
+
+        //方法二：
+        console.log(this.$refs.fourth.name);
+        this.$refs.fourth.showMessage();
+      }
+    },
+    components: {
+      cpn: {
+        template: '#cpn',
+        data(){
+          return {
+            name: '我是子组件的name'
+          }
+        },
+        methods: {
+          showMessage()
+          {
+            // return 1;
+            console.log('showMessage');
+          }
+        }
+      }
+    }
+  })
+</script>
+</body>
+</html>

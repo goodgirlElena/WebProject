@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>什么是编译作用域</title>
+</head>
+<body>
+<!--
+  vue实例和组件当中定义的变量其作用域仅限其各自的模板内
+ -->
+<!--下面是vue实例模板-->
+<div id="app">
+  <!--此处的isShow是vue实例当中的变量-->
+  <cpn v-show="isShow"></cpn>
+</div>
+<!--下面是组件模板-->
+<template id="cpn">
+  <div>
+    <h1>我是标题</h1>
+    <p>我是段落：哈哈哈</p>
+    <!--此处的isShow是子组件里面的变量-->
+    <button v-show="isShow">按钮</button>
+  </div>
+</template>
+<script src="../js/vue.js"></script>
+<script>
+  let vm = new Vue({
+    el: '#app',
+    data: {
+      message: "我太难了！",
+      isShow: true
+    },
+    components: {
+      cpn: {
+        template: '#cpn',
+        data(){
+          return {
+            isShow: false
+          }
+        }
+      }
+    }
+  })
+</script>
+</body>
+</html>
