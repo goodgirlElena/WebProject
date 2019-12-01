@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Promise的链式调用</title>
+</head>
+<body>
+  <script>
+    // 1. 链式调用的第一种写法
+    new Promise((resolve) => {
+      setTimeout(() => {
+        console.log('测试promise');
+        resolve('Elena');
+      },1000)
+    }).then((res) => {
+      console.log(res,'第一次处理数据的代码');
+      // return new Promise((resolve) => {
+      //   resolve(res + '18');
+      // });
+      return new Promise((resolve,reject) => {
+        reject("程序err");
+      })
+    }).then((res) => {
+      console.log(res,"第二次处理数据的代码");
+      return new Promise((resolve) => {
+        resolve(res + '岁');
+      });
+    }).then((res) => {
+      console.log(res,"第三次数据处理的代码");
+    }).catch((err) => {
+      console.log(err);
+    })
+
+    // 2. 链式调用的简写（一）
+    // new Promise((resolve) => {
+    //   setTimeout(() => {
+    //     console.log('测试promise');
+    //     resolve('Elena');
+    //   },1000)
+    // }).then((res) => {
+    //   console.log(res,'第一次处理数据的代码');
+    //   // return Promise.resolve(res + '18');
+    //   return Promise.reject('程序err')
+    // }).then((res) => {
+    //   console.log(res,"第二次处理数据的代码");
+    //   return Promise.resolve(res + '岁');
+    // }).then((res) => {
+    //   console.log(res,"第三次数据处理的代码");
+    // }).catch((err) => {
+    //   console.log(err);
+    // })
+
+    // 3. 链式调用的简写（二）
+    // new Promise((resolve) => {
+    //   setTimeout(() => {
+    //     console.log('测试promise');
+    //     resolve('Elena');
+    //   },1000)
+    // }).then((res) => {
+    //   console.log(res,'第一次处理数据的代码');
+    //   //请求成功后的程序代码
+    //   // return res + '18';
+    //   //请求失败后的程序代码
+    //   throw('程序err');
+    // }).then((res) => {
+    //   console.log(res,"第二次处理数据的代码");
+    //   return res + '岁';
+    // }).then((res) => {
+    //   console.log(res,"第三次数据处理的代码");
+    // }).catch((err) => {
+    //   console.log(err);
+    // })
+  </script>
+</body>
+</html>
